@@ -37,60 +37,10 @@ call plug#begin('~/.vim/bundle')
         nmap Fb :FufBuffer<CR>
         " nmap Fc :FufDir
 
-    " " Vim 的命令行
-    " Plug 'rosenfeld/conque-term'
-
-        " nmap <C-z> :ConqueTermSplit bash<CR>
-
-    " 命令行著色
-    Plug 'chrisbra/Colorizer'
-
-        let s:numChangeColorSwitch = 0
-        function! Bway_rewrite_ChangeColorToggle()
-            let s:numChangeColorSwitch += 1
-            if s:numChangeColorSwitch == 1
-                ColorHighlight
-            else
-                let s:numChangeColorSwitch = 0
-                ColorClear
-            endif
-        endfunction
-
-        nmap z/rcc :call Bway_rewrite_ChangeColorToggle()<CR>
-
     " 程式碼目錄 需額外安裝 ctags
     Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 
         nmap <F8> :TagbarToggle<CR>
-
-    " 程式碼風格檢查
-    Plug 'vim-syntastic/syntastic'
-
-        " 除錯工具
-        " let g:syntastic_debug = 9
-        " 有效值: 0,1 ; 預設 0
-        " 主動檢查語法，包含 第一次加載緩衝區 和 保存時。
-        let g:syntastic_check_on_open = 1
-        " 預設 2 ; 是否自動開關顯示窗口
-        "        \ | 0 | 1 | 2 | 3
-        " 自動打開 | X | O | X | O
-        " 自動關閉 | X | O | O | X
-        let g:syntastic_auto_loc_list = 1
-        let g:syntastic_javascript_checkers = ['eslint']
-        let g:syntastic_always_populate_loc_list = 1
-
-        nmap z/rcn :lnext<CR>
-
-    " 程式碼風格格式化
-    Plug 'Chiel92/vim-autoformat'
-
-        let g:formatdef_eslint = '"tmpFile=.${RANDOM}.eslint.js'
-            \ . '; cat - > $tmpFile; eslint --fix --no-ignore $tmpFile > /dev/null'
-            \ . '; cat $tmpFile | perl -pe \"chomp if eof\"; rm $tmpFile"'
-        let g:formatters_javascript = ['eslint']
-
-        nmap z/rfmt :Autoformat<CR>
-
 
     " 標記減量預覽
     Plug 'BwayCer/markdown-preview.vim', { 'branch': 'linkInVm', 'for': 'markdown' }
@@ -98,9 +48,6 @@ call plug#begin('~/.vim/bundle')
 
         nmap z/rmd :MarkdownPreview<CR>
         nmap z/rmdstop :MarkdownPreviewStop<CR>
-
-    " Go 程式語言
-    Plug 'fatih/vim-go'
 
 
     " >> 基礎設置 -------
