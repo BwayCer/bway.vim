@@ -258,25 +258,9 @@ call plug#begin('~/.vim/bundle')
             " 手動摺疊
             nmap z/fmm :set foldmethod=manual<CR>
 
-        " 禁用側邊欄
-        let s:isDisableSideRowNumber = 0
-        function! Bway_toggle_sideRowNumber()
-            if s:isDisableSideRowNumber
-                let s:isDisableSideRowNumber = 0
-                set number
-                set relativenumber
-                set foldenable
-                set foldcolumn=2
-            else
-                let s:isDisableSideRowNumber = 1
-                set nonumber
-                set norelativenumber
-                set nofoldenable
-                set foldcolumn=0
-            endif
-        endfunction
+        " 側邊欄開關
 
-            nmap z/side :call Bway_toggle_sideRowNumber()<CR>
+            nmap z/side :call bway#utils#SideRowNumberToggle()<CR>
 
         " 自動補齊
         " (keyword: omnifunc)

@@ -21,3 +21,21 @@ function! bway#utils#ImportPython(pyLibPath, ...)
     call bway#utils#ImportFile(a:pyLibPath, l:expr, 'py3file ')
 endfunction
 
+
+" 側邊欄開關
+" @requires sideRowNumber.py
+function! bway#utils#SideRowNumberToggle()
+    let ynEnable = py3eval('bway_sideRowNumber_isEnable(' . bufnr('%') . ')')
+    if ynEnable == 1
+        set number
+        set relativenumber
+        set foldenable
+        set foldcolumn=2
+    else
+        set nonumber
+        set norelativenumber
+        set nofoldenable
+        set foldcolumn=0
+    endif
+endfunction
+
