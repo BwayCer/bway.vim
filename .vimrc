@@ -276,17 +276,6 @@ call plug#begin('~/.vim/bundle')
         " 下一分頁
         nmap z/wtn :tabnext<CR>
 
-        " Tmux
-        function! Bway_window_tmuxAttach()
-            if system('tmux ls')=~#'^no server running'
-                !tmux -2
-            else
-                !tmux attach
-            endif
-        endfunction
-
-            nmap z/wt :call Bway_window_tmuxAttach()<CR>
-
 
     " >> 特殊動作 -------
 
@@ -482,7 +471,7 @@ call plug#begin('~/.vim/bundle')
             echo '    z/wtl   : 分頁列表           z/wte   : 新增分頁'
             echo '    z/wtp   : 上一分頁           z/wtn   : 下一分頁'
             echo ' '
-            echo '    <C-z>   : 背景工作           z/wt    : 開啟 Tmux'
+            echo '    <C-z>   : 背景工作'
 
             echo ' '
             echo '縮排：'
