@@ -145,17 +145,12 @@ call plug#begin('~/.vim/bundle')
         " 依照檔案類型自動決定縮排樣式
         " filetype indent on
 
-            " 設定縮排寬度
-            function! Bway_setting_indentTabWidth(width)
-                let &tabstop = a:width
-                let &shiftwidth = a:width
-                echo '以 ' . a:width . ' 個單位縮排'
-            endfunction
+        " 設定縮排寬度
 
-            nmap z/tab  :call Bway_setting_indentTabWidth(
-            nmap z/tab2 :call Bway_setting_indentTabWidth(2)<CR>
-            nmap z/tab4 :call Bway_setting_indentTabWidth(4)<CR>
-            nmap z/tab8 :call Bway_setting_indentTabWidth(8)<CR>
+            nmap z/tab  :BwaySetIndentTabWidth
+            nmap z/tab2 :BwaySetIndentTabWidth 2<CR>
+            nmap z/tab4 :BwaySetIndentTabWidth 4<CR>
+            nmap z/tab8 :BwaySetIndentTabWidth 8<CR>
 
         " 高亮游標行 (水平)
         set cursorline

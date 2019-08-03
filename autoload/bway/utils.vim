@@ -22,6 +22,13 @@ function! bway#utils#ImportPython(pyLibPath, ...)
 endfunction
 
 
+" 設定縮排寬度
+function! bway#utils#SetIndentTabWidth(width)
+    let &tabstop = a:width
+    let &shiftwidth = a:width
+    echo '以 ' . a:width . ' 個單位縮排'
+endfunction
+
 " 側邊欄開關
 " @requires sideRowNumber.py
 function! bway#utils#SideRowNumberToggle()
