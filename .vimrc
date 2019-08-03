@@ -181,55 +181,6 @@ call plug#begin('~/.vim/bundle')
         set laststatus=2
 
 
-        " 狀態列樣式
-        function! Bway_statusLine_bufTotalNum()
-            return len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
-        endfunction
-
-        function! Bway_statusLine_fileSize(f)
-            let l:size = getfsize(expand(a:f))
-            if l:size == 0 || l:size == -1 || l:size == -2
-                return '[Empty]'
-            endif
-            if l:size < 1024
-                return l:size . 'b'
-            elseif l:size < 1024*1024
-                return printf('%.1f', l:size/1024.0) . 'K'
-            elseif l:size < 1024*1024*1024
-                return printf('%.1f', l:size/1024.0/1024.0) . 'M'
-            else
-                return printf('%.1f', l:size/1024.0/1024.0/1024.0) . 'G'
-            endif
-        endfunction
-
-        set statusline=%1*[B%{Bway_statusLine_bufTotalNum()}-%n]%m%*
-        set statusline+=%9*\ %y%r%*
-        set statusline+=%8*\ %{Bway_statusLine_fileSize(@%)}\ %*
-        set statusline+=%<%7*\ %{&ff}\ \|\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\")}\ %*
-        set statusline+=%3*\ %F\ %*
-        set statusline+=%7*%=%*
-        set statusline+=%8*\ %3.(%c%V%)\ %*
-        set statusline+=%9*\ %l/%L\(%P\)\ %*
-
-        hi User5 cterm=None ctermfg=202 ctermbg=237
-        hi User7 cterm=None ctermfg=237 ctermbg=250
-        hi User8 cterm=None ctermfg=255 ctermbg=243
-        hi User9 cterm=None ctermfg=250 ctermbg=237
-
-        function! s:changeInsertMode(isInsert)
-            if a:isInsert
-                hi User1 cterm=None ctermfg=165 ctermbg=228
-                hi User3 cterm=bold ctermfg=165 ctermbg=228
-            else
-                hi User1 cterm=None ctermfg=172 ctermbg=195
-                hi User3 cterm=bold ctermfg=172 ctermbg=195
-            endif
-        endfunction
-        autocmd InsertEnter * call s:changeInsertMode(1)
-        autocmd InsertLeave * call s:changeInsertMode(0)
-
-        call s:changeInsertMode(0)
-
     " >> 緩衝區與切割視窗 -------
 
         " 儲存文件
