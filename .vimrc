@@ -200,6 +200,8 @@ call plug#begin('~/.vim/bundle')
 
         " 儲存文件
         nmap z/s :w<CR>
+        " 退出文件
+        nmap z/q :q<CR>
 
         " 緩衝區列表
         nmap z/bl :ls<CR>
@@ -310,81 +312,86 @@ call plug#begin('~/.vim/bundle')
         " autocmd BufWritePre * call RemoveTrailingWhitespace()
         nmap z/rfs :call RemoveTrailingWhitespace()<CR>
 
+    " >> 常用命令提示 -------
 
-        " 常用命令提示
         function! ZCommandHelp()
-            echo '常用命令提示\n=======\n'
+            echo "常用命令提示\n=======\n\n"
+            echo '> @: 為 z/ 組合鍵'
 
+            echo ' '
             echo '基礎：'
-            echo '    z/H : 幫助       z/rvc : 更新 .vimrc'
-            echo '    z/s : 儲存文件   z/rs  : 保存會話、文件並退出   z/rq : q! 退出'
+            echo '    @H : 幫助       @rvc : 更新 .vimrc'
+            echo '    @s : 儲存文件   @q : 退出文件'
 
             echo ' '
             echo '會話紀錄：'
-            echo '    z/rss,  z/rsr,  z/rsd  : 保存、恢復、刪除自定義名稱的會話'
-            echo '    z/rssc, z/rsrc, z/rsdc : 保存、恢復、刪除名為 Cupcake 的會話'
-            echo '    z/rssd, z/rsrd, z/rsdd : 保存、恢復、刪除名為 Donut 的會話'
-            echo '    z/rsse, z/rsre, z/rsde : 保存、恢復、刪除名為 Eclair 的會話'
+            echo '    @rss,  @rsr,  @rsd  : 保存、恢復、刪除自定義名稱的會話'
+            echo '    @rssc, @rsrc, @rsdc : 保存、恢復、刪除名為 Cupcake 的會話'
+            echo '    @rssd, @rsrd, @rsdd : 保存、恢復、刪除名為 Donut 的會話'
+            echo '    @rsse, @rsre, @rsde : 保存、恢復、刪除名為 Eclair 的會話'
 
             echo ' '
             echo '插件管理：'
-            echo '    z/rpi : 安裝未安裝的插件   z/rpu : 安裝或更新插件   z/rpc : 移除未使用的插件目錄'
+            echo '    @rpi : 安裝未安裝的插件   @rpu : 安裝或更新插件   @rpc : 移除未使用的插件目錄'
             echo ' '
             echo '    程式碼檢查：'
-            echo '        z/rcn : 跳至下個錯誤點'
-            echo '        z/rfs : 刪除多餘空白     z/rfmt : 格式化文件'
+            echo '        @rcn : 跳至下個錯誤點'
+            echo '        @rfs : 刪除多餘空白    @rfmt : 格式化文件'
             echo ' '
             echo '    命令行著色：'
-            echo '        z/rcc : 預設/著色切換'
+            echo '        @rcc : 預設/著色切換'
             echo ' '
             echo '    查找文件：'
-            echo '        Ff : 開啟指定路徑文件    Fb : 開啟指定緩衝區文件'
+            echo '        Ff : 開啟指定路徑文件  Fb : 開啟指定緩衝區文件'
             echo ' '
             echo '    程式碼目錄：'
             echo '        <F8> : 開啟/關閉'
             echo ' '
             echo '    標記減量預覽：'
-            echo '        z/rmd : 預覽標記減量     z/rmdstop : 關閉預覽標記減量'
+            echo '        @rmd : 預覽標記減量    @rmdstop : 關閉預覽標記減量'
             echo ' '
             echo '    Go 程式語言：'
-            echo '        z/gof (z/gofmt) : 格式化'
-            echo '        z/gor (z/gorun) : 運行'
+            echo '        @gof (@gofmt) : 格式化'
+            echo '        @gor (@gorun) : 運行'
 
             echo ' '
             echo '緩衝區：'
-            echo '    z/bl : 緩衝區列表'
-            echo '    z/bm : 前一個開啟的緩衝區'
-            echo '    z/bk : 上一個緩衝區          z/bj : 下一個緩衝區'
-            echo '    z/bd : 解除安裝緩衝區'
+            echo '    @bl : 緩衝區列表'
+            echo '    @bm : 前一個開啟的緩衝區'
+            echo '    @bk : 上一個緩衝區         @bj : 下一個緩衝區'
+            echo '    @bd : 解除安裝緩衝區'
 
             echo ' '
             echo '搜尋文件內容：'
-            echo '    z/sr  : 使用 `grep -rin <正規語法> <起始路徑>'
-            echo '    z/srp : 上一個搜尋位置       z/srn : 下一個搜尋位置'
-            echo '    z/sro : 開啟清單列           z/src : 關閉清單列'
+            echo '    @sr  : 使用 `grep -rin <正規語法> <起始路徑>'
+            echo '    @srp : 上一個搜尋位置       @srn : 下一個搜尋位置'
+            echo '    @sro : 開啟清單列           @src : 關閉清單列'
 
             echo ' '
             echo '視窗：'
-            echo '    <C-w> s : 切割水平視窗       <C-w> v : 切割垂直視窗       z/ww : 順序地切換視窗'
-            echo '    z/wh    : 移動至左側的視窗   z/wl    : 移動至右側的視窗'
-            echo '    z/wj    : 移動至下方的視窗   z/wk    : 移動至上方的視窗'
-            echo '    z/wrh   : 加高視窗 + [Num]   z/wrH   : 縮高視窗 + [Num]'
-            echo '    z/wrw   : 加寬視窗 + [Num]   z/wrW   : 縮寬視窗 + [Num]'
+            echo '    <C-w> s : 切割水平視窗     <C-w> v : 切割垂直視窗'
             echo ' '
-            echo '    z/wtl   : 分頁列表           z/wte   : 新增分頁'
-            echo '    z/wtp   : 上一分頁           z/wtn   : 下一分頁'
+            echo '    @ww   : 順序地切換視窗'
+            echo '    @wh   : 移動至左側的視窗   @wl   : 移動至右側的視窗'
+            echo '    @wj   : 移動至下方的視窗   @wk   : 移動至上方的視窗'
             echo ' '
-            echo '    <C-z>   : 背景工作'
+            echo '    @wrh  : 加高視窗 + [Num]   @wrH  : 縮高視窗 + [Num]'
+            echo '    @wrw  : 加寬視窗 + [Num]   @wrW  : 縮寬視窗 + [Num]'
+            echo ' '
+            echo '    @wtl  : 分頁列表           @wte  : 新增分頁'
+            echo '    @wtp  : 上一分頁           @wtn  : 下一分頁'
+            echo ' '
+            echo '    <C-z> : 背景工作'
 
             echo ' '
             echo '縮排：'
-            echo '    z/tab  : 設定縮排寬度 ( z/tab2、z/tab4、z/tab8 )'
-            echo '    z/pas  : 貼上模式            z/pno : 取消貼上模式'
-            echo '    z/side : 啟用/關閉側邊欄'
+            echo '    @tab  : 設定縮排寬度 ( @tab2、@tab4、@tab8 )'
+            echo '    @pas  : 貼上模式            @pno : 取消貼上模式'
+            echo '    @side : 啟用/關閉側邊欄'
 
             echo ' '
             echo '摺疊方式：'
-            echo '    z/fmi : 依 shiftwidth 的縮排方式摺疊   z/fmm : 手動摺疊'
+            echo '    @fmi : 依 shiftwidth 的縮排方式摺疊   @fmm : 手動摺疊'
             echo '    zn    : 禁用折疊                       zN    : 啟用折疊'
             echo '    za    : 打開或關閉當前的折疊'
             echo '    zo    : 打開當前的折疊                 zc    : 關閉當前打開的折疊'
@@ -405,7 +412,7 @@ call plug#begin('~/.vim/bundle')
 
             echo ' '
             echo '額外功能：'
-            echo '    z/dir : 對當前文件目錄操作'
+            echo '    @dir : 對當前文件目錄操作'
             echo ' '
             echo '    Kiang：'
             echo '        VimGameCodeBreak : 打程式碼方塊'
@@ -413,7 +420,9 @@ call plug#begin('~/.vim/bundle')
             echo ' '
         endfunction
 
-        nmap z/H :call ZCommandHelp()<CR>
+        command! BwayZCommandHelp :call ZCommandHelp()
+        nmap z/H :BwayZCommandHelp<CR>
+
 
 " 初始化插件系統
 call plug#end()
