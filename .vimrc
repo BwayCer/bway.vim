@@ -161,6 +161,26 @@ call plug#begin('~/.vim/bundle')
         set ruler
 
 
+    " >> 會話紀錄 -------
+
+        " :help sessionoptions
+        set sessionoptions-=curdir
+        set sessionoptions+=sesdir
+
+        nmap z/rss    :BwayRecordSession save goo
+        nmap z/rsr :BwayRecordSession restore goo
+        nmap z/rsd  :BwayRecordSession delete goo
+        nmap z/rssc    :BwayRecordSession save Cupcake<CR>
+        nmap z/rsrc :BwayRecordSession restore Cupcake<CR>
+        nmap z/rsdc  :BwayRecordSession delete Cupcake<CR>
+        nmap z/rssd    :BwayRecordSession save Donut<CR>
+        nmap z/rsrd :BwayRecordSession restore Donut<CR>
+        nmap z/rsdd  :BwayRecordSession delete Donut<CR>
+        nmap z/rsse    :BwayRecordSession save Eclair<CR>
+        nmap z/rsre :BwayRecordSession restore Eclair<CR>
+        nmap z/rsde  :BwayRecordSession delete Eclair<CR>
+
+
     " >> 風格配置 -------
 
         " 啟用暗色背景模式
@@ -290,60 +310,6 @@ call plug#begin('~/.vim/bundle')
         " autocmd BufWritePre * call RemoveTrailingWhitespace()
         nmap z/rfs :call RemoveTrailingWhitespace()<CR>
 
-        " :help sessionoptions
-        set sessionoptions-=curdir
-        set sessionoptions+=sesdir
-
-        function! s:recordSession_run(act)
-            let l:sessionPath = '~/.vim/myVim/Session.tmp.vim'
-            let l:isFileExists = !empty(findfile(l:sessionPath))
-
-            if !l:isFileExists
-                call system('mkdir -p ~/.vim/myVim; touch ' . l:sessionPath)
-            endif
-
-            if a:act == 'clear'
-                call system('cat /dev/null > ' . l:sessionPath)
-            elseif a:act == 'save'
-                mks! ~/.vim/myVim/Session.tmp.vim
-            elseif a:act == 'restore'
-                source ~/.vim/myVim/Session.tmp.vim
-            endif
-        endfunction
-
-        let s:isRecordSession = 1
-        function! Bway_recordSession_prompt(act)
-            if s:isRecordSession
-                if a:act == 'save'
-                    if input('是否保存本次的會話群組？ [y: Yes, n: No] ') == 'y'
-                        call s:recordSession_run('save')
-                    endif
-                elseif a:act == 'restore' && !empty(system('cat ~/.vim/myVim/Session.tmp.vim'))
-                    if input('是否恢復上次的會話群組？ [y: Yes, n: No] ') == 'y'
-                        call s:recordSession_run('restore')
-                    elseif input('是否清除上次的會話群組？ [y: Yes, n: No] ') == 'y'
-                        call s:recordSession_run('clear')
-                    endif
-                endif
-            endif
-        endfunction
-
-        function! Bway_recordSession_quick(act)
-            let s:isRecordSession = 0
-            if a:act == 'save'
-                call s:recordSession_run('save')
-                exe 'x'
-            else
-                exe 'q!'
-            endif
-            let s:isRecordSession = 1
-        endfunction
-
-        nmap z/rs :call Bway_recordSession_quick('save')<CR>
-        nmap z/rq :call Bway_recordSession_quick('noSave')<CR>
-        autocmd VimLeavePre * call Bway_recordSession_prompt('save')
-        autocmd VimEnter * call Bway_recordSession_prompt('restore')
-
 
         " 常用命令提示
         function! ZCommandHelp()
@@ -352,6 +318,13 @@ call plug#begin('~/.vim/bundle')
             echo '基礎：'
             echo '    z/H : 幫助       z/rvc : 更新 .vimrc'
             echo '    z/s : 儲存文件   z/rs  : 保存會話、文件並退出   z/rq : q! 退出'
+
+            echo ' '
+            echo '會話紀錄：'
+            echo '    z/rss,  z/rsr,  z/rsd  : 保存、恢復、刪除自定義名稱的會話'
+            echo '    z/rssc, z/rsrc, z/rsdc : 保存、恢復、刪除名為 Cupcake 的會話'
+            echo '    z/rssd, z/rsrd, z/rsdd : 保存、恢復、刪除名為 Donut 的會話'
+            echo '    z/rsse, z/rsre, z/rsde : 保存、恢復、刪除名為 Eclair 的會話'
 
             echo ' '
             echo '插件管理：'

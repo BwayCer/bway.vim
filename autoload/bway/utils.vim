@@ -22,6 +22,12 @@ function! bway#utils#ImportPython(pyLibPath, ...)
 endfunction
 
 
+" 以反斜線編碼文字中的引號
+function! bway#utils#SafeQuote(txt)
+    return substitute(a:txt, '"', '\\\"', 'g')
+endfunction
+
+
 " 設定縮排寬度
 function! bway#utils#SetIndentTabWidth(width)
     let &tabstop = a:width
