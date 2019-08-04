@@ -52,3 +52,15 @@ function! bway#utils#SideRowNumberToggle()
     endif
 endfunction
 
+
+" 刪除多餘空白
+function! bway#utils#RemoveTrailingSpace()
+    if &ft != "diff"
+        let b:curcol = col(".")
+        let b:curline = line(".")
+        silent! %s/\v +$//
+        silent! %s/(\s*\n)\+\%$//
+        call cursor(b:curline, b:curcol)
+    endif
+endfunction
+

@@ -300,17 +300,9 @@ call plug#begin('~/.vim/bundle')
         " 刪除多餘空白
         " 程式碼風格格式化 'Chiel92/vim-autoformat' 包含了此功能
         " 不過其功能過於強硬
-        function RemoveTrailingWhitespace()
-            if &ft != "diff"
-                let b:curcol = col(".")
-                let b:curline = line(".")
-                silent! %s/\v +$//
-                silent! %s/(\s*\n)\+\%$//
-                call cursor(b:curline, b:curcol)
-            endif
-        endfunction
-        " autocmd BufWritePre * call RemoveTrailingWhitespace()
-        nmap z/rfs :call RemoveTrailingWhitespace()<CR>
+        " autocmd BufWritePre * call bway#utils#RemoveTrailingSpace()
+        nmap <CR>rfs :call bway#utils#RemoveTrailingSpace()<CR>
+
 
     " >> 常用命令提示 -------
 
