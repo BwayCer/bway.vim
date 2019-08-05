@@ -1,4 +1,15 @@
 
+" 取得設定值
+" 程式包有可能以延遲的方式載入，因此可避免覆蓋過使用者的設定值
+function! bway#utils#GetVar(name)
+    let l:result = get(g:, 'bway_' . a:name)
+    if !empty(l:result) " or l:result != '0'
+        return l:result
+    endif
+    return get(g:bway_getVar_conf, a:name, 0)
+endfunction
+
+
 " 載入文件
 function! bway#utils#ImportFile(originPath, findExpr, execExpr)
     let l:findPyFile = globpath(a:originPath, a:findExpr)
