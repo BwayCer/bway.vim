@@ -51,7 +51,7 @@ call canUtils#ImportPython(s:_dirvi . '/lib.py3/')
 
     " 以交互方式詢問主會話的紀錄操作
     function! s:mainSessionPrompt(act)
-        let l:sessionPath = canUtils#GetVar('recordSession_storePath') . '/main.vim'
+        let l:sessionPath = canUtils#GetVar('bway', 'recordSession_storePath') . '/main.vim'
         if !empty(findfile(l:sessionPath))
             if a:act == 'save'
                 if input('是否保存本次的會話群組？ (y: Yes, n: No)[n] : ') == 'y'

@@ -8,12 +8,18 @@ endfunction
 
 " 取得設定值
 " 程式包有可能以延遲的方式載入，因此可避免覆蓋過使用者的設定值
-function! canUtils#GetVar(name)
-    let l:result = get(g:, 'bway_' . a:name)
-    if !empty(l:result) " or l:result != '0'
+function! canUtils#GetVar(prifix, name)
+    let l:result = get(g:, a:prifix . '_' . a:name)
+    if !empty(l:result)
         return l:result
     endif
-    return get(g:bway_getVar_conf, a:name, 0)
+
+    let l:conf = get(g:, a:prifix . '_getVar_conf')
+    if empty(l:conf)
+        return 0
+    endif
+
+    return get(l:conf, a:name, 0)
 endfunction
 
 
