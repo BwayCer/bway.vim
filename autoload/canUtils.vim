@@ -45,6 +45,15 @@ function! canUtils#ImportPython(pyLibPath, ...)
     call canUtils#ImportFile(a:pyLibPath, l:expr, 'py3file ')
 endfunction
 
+" 運行命令行命令
+function! canUtils#Sh(command, ...)
+    let l:cmdTxt = '"' . canUtils#SafeQuote(a:command) . '"'
+    for l:argu in a:000
+        let l:cmdTxt .= ' "' . canUtils#SafeQuote(l:argu) . '"'
+    endfor
+    return system(l:cmdTxt)
+endfunction
+
 
 " 以反斜線編碼文字中的引號
 function! canUtils#SafeQuote(txt)
