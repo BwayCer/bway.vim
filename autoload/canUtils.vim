@@ -45,13 +45,32 @@ function! canUtils#ImportPython(pyLibPath, ...)
     call canUtils#ImportFile(a:pyLibPath, l:expr, 'py3file ')
 endfunction
 
-" 運行命令行命令
-function! canUtils#Sh(command, ...)
-    let l:cmdTxt = '"' . canUtils#SafeQuote(a:command) . '"'
-    for l:argu in a:000
-        let l:cmdTxt .= ' "' . canUtils#SafeQuote(l:argu) . '"'
+
+" 可共用的運行命令行命令
+function! s:shRun(cmdList)
+    let l:cmdTxt = ''
+    for l:argu in a:cmdList
+        echom
+        if l:argu == ';'
+            let l:cmdTxt .= ';'
+        else
+            let l:cmdTxt .= '"' . canUtils#SafeQuote(l:argu) . '" '
+        endif
     endfor
     return system(l:cmdTxt)
+endfunction
+
+" 運行命令行命令
+function! canUtils#Sh(...)
+    return s:shRun(a:000)
+endfunction
+
+" 運行命令行命令並整理回傳訊息
+function! canUtils#ShMiddle(...)
+    let l:result = s:shRun(a:000)
+    let l:info = {'errCode': v:shell_error, 'result': l:result}
+    let l:info.lineList = split(l:result, '\n')
+    return l:info
 endfunction
 
 
