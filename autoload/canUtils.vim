@@ -25,10 +25,10 @@ endfunction
 
 " 載入文件
 function! canUtils#ImportFile(originPath, findExpr, execExpr)
-    let l:findPyFile = globpath(a:originPath, a:findExpr)
-    let l:pyFileList = filter(split(l:findPyFile, '\n'), '!isdirectory(v:val)')
+    let l:findFile = globpath(a:originPath, a:findExpr)
+    let l:fileList = filter(split(l:findFile, '\n'), '!isdirectory(v:val)')
 
-    for l:filePath in l:pyFileList
+    for l:filePath in l:fileList
         exec a:execExpr . l:filePath
     endfor
 endfunction
