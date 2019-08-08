@@ -2,7 +2,7 @@
 " 檢查儲存目錄是否存在，若不存在則創建新目錄
 function! s:checkStorePath(storePath)
     if empty(finddir(a:storePath))
-        call system('mkdir -p ' . bway#utils#SafeQuote(a:storePath))
+        call system('mkdir -p ' . canUtils#SafeQuote(a:storePath))
         if v:shell_error != 0
             throw '無法創建 "' . a:storePath . '" 目錄用以存取會話紀錄。'
         endif
@@ -43,7 +43,7 @@ function! bway#recordSession#Operate(method, ...)
             echom '無法刪除不存在的 ' . l:sessionPath . ' 會話紀錄文件。'
         else
             call system('rm "'
-                \ . bway#utils#SafeQuote(g:bway_recordSession_storePath)
+                \ . canUtils#SafeQuote(g:bway_recordSession_storePath)
                 \ . '"')
             if v:shell_error != 0
                 echom '無法刪除 ' . l:sessionPath . ' 會話紀錄文件。'
