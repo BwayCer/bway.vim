@@ -48,6 +48,11 @@ endfunction
 
 " 以反斜線編碼文字中的引號
 function! canUtils#SafeQuote(txt)
-    return substitute(a:txt, '"', '\\\"', 'g')
+    let l:symbolList = ['\', '"']
+    let l:expr = a:txt
+    for l:pat in l:symbolList
+        let l:expr = substitute(l:expr, l:pat, '\\\' . l:pat, 'g')
+    endfor
+    return l:expr
 endfunction
 
