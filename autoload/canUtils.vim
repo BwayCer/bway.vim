@@ -1,5 +1,7 @@
 " 罐頭工具
 
+" 若依賴本文件，請將本文件複製至 `~/.vim/autoload/canUtils.vim`。
+
 
 " 取得 vim 程式包目錄
 function canUtils#GetDirVi(mods)
