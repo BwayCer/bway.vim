@@ -1,7 +1,7 @@
 
 let g:bway_getVar_conf = {}
 let s:_dirvi = fnamemodify(resolve(expand('<sfile>:p')), ':h:h')
-call canUtils#ImportPython(s:_dirvi . '/lib.py3/')
+call canUtils#ImportPython(s:_dirvi . '/lib/')
 
 
     command! -nargs=* BwaySetIndentTabWidth :call bway#utils#SetIndentTabWidth(<f-args>)
