@@ -48,8 +48,8 @@ function! canUtils#ImportPython(pyLibPath, ...)
 endfunction
 
 
-" 可共用的運行命令行命令
-function! s:shRun(cmdList)
+" 可共用的取得命令行命令文字
+function! s:getCmdTxt(cmdList)
     let l:cmdTxt = ''
     for l:argu in a:cmdList
         echom
@@ -59,17 +59,22 @@ function! s:shRun(cmdList)
             let l:cmdTxt .= '"' . canUtils#SafeQuote(l:argu) . '" '
         endif
     endfor
-    return system(l:cmdTxt)
+    return l:cmdTxt
+endfunction
+
+" 取得命令行命令文字
+function! canUtils#GetCmdTxt(...)
+    return s:getCmdTxt(a:000)
 endfunction
 
 " 運行命令行命令
 function! canUtils#Sh(...)
-    return s:shRun(a:000)
+    return system(s:getCmdTxt(a:000))
 endfunction
 
 " 運行命令行命令並整理回傳訊息
 function! canUtils#ShMiddle(...)
-    let l:result = s:shRun(a:000)
+    let l:result = system(s:getCmdTxt(a:000))
     let l:info = {'errCode': v:shell_error, 'result': l:result}
     let l:info.lineList = split(l:result, '\n')
     return l:info
