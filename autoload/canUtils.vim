@@ -3,10 +3,8 @@
 " 若依賴本文件，請將本文件複製至 `~/.vim/autoload/canUtils.vim`。
 
 
-" 取得 vim 程式包目錄
-function canUtils#GetDirVi(mods)
-    return fnamemodify(resolve(expand('<sfile>:p')), a:mods)
-endfunction
+" 取得 vim 程式包目錄的方法
+" let s:_dirvi = fnamemodify(resolve(expand('<sfile>:p')), '[:h ...]')
 
 " 取得設定值
 " 程式包有可能以延遲的方式載入，因此可避免覆蓋過使用者的設定值
@@ -52,7 +50,6 @@ endfunction
 function! s:getCmdTxt(cmdList)
     let l:cmdTxt = ''
     for l:argu in a:cmdList
-        echom
         if l:argu == ';'
             let l:cmdTxt .= ';'
         else
