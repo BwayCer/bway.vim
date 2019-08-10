@@ -8,11 +8,11 @@ call plug#begin('~/.vim/bundle')
 
     " >> 起頭設置 -------
 
-        nmap <silent> z/rvc :source ~/.vimrc<CR>
+        nmap <silent> <CR>rvc :source ~/.vimrc<CR>
 
-        nmap z/rpi :PlugInstall<CR>
-        nmap z/rpu :PlugUpdate<CR>
-        nmap z/rpc :PlugClean<CR>
+        nmap <CR>rvpi :PlugInstall<CR>
+        nmap <CR>rvpu :PlugUpdate<CR>
+        nmap <CR>rvpc :PlugClean<CR>
         " :PlugUpgrade   - 更新 vim-plug 管理器
         " :PlugInstall   - 安裝未安裝的插件
         " :PlugUpdate    - 安裝或更新插件
@@ -56,7 +56,7 @@ call plug#begin('~/.vim/bundle')
             endif
         endfunction
 
-        nmap z/rcc :call Bway_rewrite_ChangeColorToggle()<CR>
+        nmap <CR>rcc :call Bway_rewrite_ChangeColorToggle()<CR>
 
     " 程式碼目錄 需額外安裝 ctags
     Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
@@ -79,7 +79,7 @@ call plug#begin('~/.vim/bundle')
         let g:syntastic_javascript_checkers = ['eslint']
         let g:syntastic_always_populate_loc_list = 1
 
-        nmap z/rcn :lnext<CR>
+        nmap <CR>rcn :lnext<CR>
 
     " 程式碼風格格式化
     Plug 'Chiel92/vim-autoformat'
@@ -89,22 +89,22 @@ call plug#begin('~/.vim/bundle')
             \ . '; cat $tmpFile | perl -pe \"chomp if eof\"; rm $tmpFile"'
         let g:formatters_javascript = ['eslint']
 
-        nmap z/rfmt :Autoformat<CR>
+        nmap <CR>rfmt :Autoformat<CR>
 
     " 標記減量預覽
     Plug 'BwayCer/markdown-preview.vim', { 'branch': 'linkInVm', 'for': 'markdown' }
     " autocmd! User markdown-preview.vim echo '[Bway.Plug] 標記減量預覽 已載入'
 
-        nmap z/rmd :MarkdownPreview<CR>
-        nmap z/rmdstop :MarkdownPreviewStop<CR>
+        nmap <CR>rmd :MarkdownPreview<CR>
+        nmap <CR>rmdstop :MarkdownPreviewStop<CR>
 
     " Go 程式語言
     Plug 'fatih/vim-go'
 
-        nmap z/gof   :GoFmt<CR>
-        nmap z/gofmt :GoFmt<CR>
-        nmap z/gor   :GoRun<CR>
-        nmap z/gorun :GoRun<CR>
+        nmap <CR>gof   :GoFmt<CR>
+        nmap <CR>gofmt :GoFmt<CR>
+        nmap <CR>gor   :GoRun<CR>
+        nmap <CR>gorun :GoRun<CR>
 
     " Go 程式語言 - 語法提示
     Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
@@ -147,10 +147,10 @@ call plug#begin('~/.vim/bundle')
 
         " 設定縮排寬度
 
-            nmap z/tab  :BwaySetIndentTabWidth
-            nmap z/tab2 :BwaySetIndentTabWidth 2<CR>
-            nmap z/tab4 :BwaySetIndentTabWidth 4<CR>
-            nmap z/tab8 :BwaySetIndentTabWidth 8<CR>
+            nmap <CR>tab  :BwaySetIndentTabWidth
+            nmap <CR>tab2 :BwaySetIndentTabWidth 2<CR>
+            nmap <CR>tab4 :BwaySetIndentTabWidth 4<CR>
+            nmap <CR>tab8 :BwaySetIndentTabWidth 8<CR>
 
         " 高亮游標行 (水平)
         set cursorline
@@ -163,22 +163,25 @@ call plug#begin('~/.vim/bundle')
 
     " >> 會話紀錄 -------
 
+        " TODO
+        echom '.vimrc 會話紀錄'
+
         " :help sessionoptions
         set sessionoptions-=curdir
         set sessionoptions+=sesdir
 
-        nmap z/rss    :BwayRecordSession save goo
-        nmap z/rsr :BwayRecordSession restore goo
-        nmap z/rsd  :BwayRecordSession delete goo
-        nmap z/rssc    :BwayRecordSession save Cupcake<CR>
-        nmap z/rsrc :BwayRecordSession restore Cupcake<CR>
-        nmap z/rsdc  :BwayRecordSession delete Cupcake<CR>
-        nmap z/rssd    :BwayRecordSession save Donut<CR>
-        nmap z/rsrd :BwayRecordSession restore Donut<CR>
-        nmap z/rsdd  :BwayRecordSession delete Donut<CR>
-        nmap z/rsse    :BwayRecordSession save Eclair<CR>
-        nmap z/rsre :BwayRecordSession restore Eclair<CR>
-        nmap z/rsde  :BwayRecordSession delete Eclair<CR>
+        nmap <CR>rss    :BwayRecordSession save goo
+        nmap <CR>rsr :BwayRecordSession restore goo
+        nmap <CR>rsd  :BwayRecordSession delete goo
+        nmap <CR>rssc    :BwayRecordSession save Cupcake<CR>
+        nmap <CR>rsrc :BwayRecordSession restore Cupcake<CR>
+        nmap <CR>rsdc  :BwayRecordSession delete Cupcake<CR>
+        nmap <CR>rssd    :BwayRecordSession save Donut<CR>
+        nmap <CR>rsrd :BwayRecordSession restore Donut<CR>
+        nmap <CR>rsdd  :BwayRecordSession delete Donut<CR>
+        nmap <CR>rsse    :BwayRecordSession save Eclair<CR>
+        nmap <CR>rsre :BwayRecordSession restore Eclair<CR>
+        nmap <CR>rsde  :BwayRecordSession delete Eclair<CR>
 
 
     " >> 風格配置 -------
@@ -199,49 +202,50 @@ call plug#begin('~/.vim/bundle')
     " >> 緩衝區與切割視窗 -------
 
         " 儲存文件
-        nmap z/s :w<CR>
+        nmap <CR>s :w<CR>
         " 退出文件
-        nmap z/q :q<CR>
+        nmap <CR>q :q<CR>
 
         " 緩衝區列表
-        nmap z/bl :ls<CR>
+        nmap <CR>bl :ls<CR>
         " 前一個開啟的緩衝區
-        nmap z/bm :b#<CR>
+        nmap <CR>bm :b#<CR>
         " 上一個緩衝區
-        nmap z/bk :bp<CR>
+        nmap <CR>bk :bp<CR>
         " 下一個緩衝區
-        nmap z/bj :bn<CR>
+        nmap <CR>bj :bn<CR>
 
         " 解除安裝緩衝區
-        nmap z/bd :bd<CR>
+        nmap <CR>bd :bd<CR>
 
         " 順序地切換視窗
-        nmap z/ww <C-w>w
+        nmap <CR>ww <C-w>w
         " 移動至左側的視窗
-        nmap z/wh <C-w>h
+        nmap <CR>wh <C-w>h
         " 移動至下方的視窗
-        nmap z/wj <C-w>j
+        nmap <CR>wj <C-w>j
         " 移動至上方的視窗
-        nmap z/wk <C-w>k
+        nmap <CR>wk <C-w>k
         " 移動至右側的視窗
-        nmap z/wl <C-w>l
+        nmap <CR>wl <C-w>l
 
         " 加寬視窗 [Num]
-        nmap z/wrw :vertical resize +
+        nmap <CR>wrw :vertical resize +
         " 縮寬視窗 [Num]
-        nmap z/wrW :vertical resize -
+        nmap <CR>wrW :vertical resize -
         " 加高視窗 [Num]
-        nmap z/wrh :resize +
+        nmap <CR>wrh :resize +
         " 縮高視窗 [Num]
-        nmap z/wrH :resize -
+        nmap <CR>wrH :resize -
 
         " 分頁列表
-        nmap z/wtl ::tabs<CR>
+        nmap <CR>wtl :tabs<CR>
         " 新增分頁
-        nmap z/wte :tabedit<CR>
+        nmap <CR>wte :tabedit<CR>
         " 上一分頁
-        nmap z/wtp :tabNext<CR>
+        nmap <CR>wtp :tabNext<CR>
         " 下一分頁
+        nmap <CR>wtn :tabnext<CR>
         nmap z/wtn :tabnext<CR>
 
 
@@ -251,7 +255,7 @@ call plug#begin('~/.vim/bundle')
         set autochdir
 
         " 對當前文件目錄操作
-        nmap z/dir :browse new .
+        nmap <CR>dir :browse new .
 
         " 字數過長時換行
         set wrap
@@ -261,8 +265,8 @@ call plug#begin('~/.vim/bundle')
         " 自動縮排
         set ai
 
-            nmap z/pas :set paste<CR>
-            nmap z/pno :set nopaste<CR>
+            nmap <CR>pas :set paste<CR>
+            nmap <CR>pno :set nopaste<CR>
 
         " 摺疊 Folding
         set foldenable          " 啟用命令
@@ -271,13 +275,13 @@ call plug#begin('~/.vim/bundle')
         set foldlevel=5         " method=indent
 
             " 依 shiftwidth 的縮排方式摺疊
-            nmap z/fmi :set foldmethod=indent<CR>
+            nmap <CR>fmi :set foldmethod=indent<CR>
             " 手動摺疊
-            nmap z/fmm :set foldmethod=manual<CR>
+            nmap <CR>fmm :set foldmethod=manual<CR>
 
         " 側邊欄開關
 
-            nmap z/side :call bway#utils#SideRowNumberToggle()<CR>
+            nmap <CR>side :call bway#utils#SideRowNumberToggle()<CR>
 
         " 自動補齊
         " (keyword: omnifunc)
@@ -291,11 +295,11 @@ call plug#begin('~/.vim/bundle')
 
         " vimgrep 搜尋
 
-            nmap z/sr  :grep -rin
-            nmap z/srp :cp<CR>
-            nmap z/srn :cn<CR>
-            nmap z/sro :copen<CR>
-            nmap z/src :cclose<CR>
+            nmap <CR>sr  :grep -rin
+            nmap <CR>srp :cp<CR>
+            nmap <CR>srn :cn<CR>
+            nmap <CR>sro :copen<CR>
+            nmap <CR>src :cclose<CR>
 
         " 刪除多餘空白
         " 程式碼風格格式化 'Chiel92/vim-autoformat' 包含了此功能
@@ -308,7 +312,7 @@ call plug#begin('~/.vim/bundle')
 
         function! ZCommandHelp()
             echo "常用命令提示\n=======\n\n"
-            echo '> @: 為 z/ 組合鍵'
+            echo '> @: 為 Enter 鍵 (<CR>)'
 
             echo ' '
             echo '基礎：'
@@ -413,7 +417,7 @@ call plug#begin('~/.vim/bundle')
         endfunction
 
         command! BwayZCommandHelp :call ZCommandHelp()
-        nmap z/H :BwayZCommandHelp<CR>
+        nmap <CR>H :BwayZCommandHelp<CR>
 
 
 " 初始化插件系統
