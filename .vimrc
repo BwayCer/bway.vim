@@ -296,10 +296,14 @@ call plug#begin('~/.vim/bundle')
         " vimgrep 搜尋
 
             nmap <CR>sr  :grep -rin
-            nmap <CR>srp :cp<CR>
-            nmap <CR>srn :cn<CR>
-            nmap <CR>sro :copen<CR>
-            nmap <CR>src :cclose<CR>
+            nmap <CR>cp  :cp<CR>
+            nmap <CR>cn  :cn<CR>
+            nmap <CR>cfp :cpf<CR>
+            nmap <CR>cfn :cnf<CR>
+            nmap <CR>clo :copen<CR>
+            nmap <CR>clc :cclose<CR>
+            nmap <CR>clp :col<CR>
+            nmap <CR>cln :cnew<CR>
 
         " 刪除多餘空白
         " 程式碼風格格式化 'Chiel92/vim-autoformat' 包含了此功能
@@ -360,8 +364,10 @@ call plug#begin('~/.vim/bundle')
             echo ' '
             echo '搜尋文件內容：'
             echo '    @sr  : 使用 `grep -rin <正規語法> <起始路徑>'
-            echo '    @srp : 上一個搜尋位置       @srn : 下一個搜尋位置'
-            echo '    @sro : 開啟清單列           @src : 關閉清單列'
+            echo '    @cp  : 上一個搜尋位置      @cn  : 下一個搜尋位置'
+            echo '    @cfp : 上一個文件位置      @cfn : 下一個文件位置'
+            echo '    @clo : 開啟清單列          @clc : 關閉清單列'
+            echo '    @clp : 上一個清單列        @cln : 下一個清單列'
 
             echo ' '
             echo '視窗：'
