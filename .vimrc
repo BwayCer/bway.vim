@@ -119,7 +119,7 @@ call plug#begin('~/.vim/bundle')
 
         let g:cmdbyu_globalDirectory = fnamemodify('~', ':p') . 'gitman'
         let g:cmdbyu_dockerCommand
-            \ = 'docker run --rm {volume}'
+            \ = 'docker run --rm -it {volume}'
             \ . ' --network host local/mizarch {shCmd}'
 
         nmap <CR>us      :CmdByURun syntax
