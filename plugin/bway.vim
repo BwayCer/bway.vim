@@ -4,6 +4,12 @@ let s:_dirvi = fnamemodify(resolve(expand('<sfile>:p')), ':h:h')
 call canUtils#ImportPython(s:_dirvi . '/lib/')
 
 
+    " 取得設定變數值
+    function! BwayGetVar(name)
+        return canUtils#GetVar('bway', a:name)
+    endfunction
+
+
     command! -nargs=* BwaySetIndentTabWidth :call bway#utils#SetIndentTabWidth(<f-args>)
 
 
@@ -51,7 +57,7 @@ call canUtils#ImportPython(s:_dirvi . '/lib/')
 
     " 以交互方式詢問主會話的紀錄操作
     function! s:mainSessionPrompt(act)
-        let l:sessionPath = canUtils#GetVar('bway', 'recordSession_storePath') . '/main.vim'
+        let l:sessionPath = BwayGetVar('recordSession_storePath') . '/main.vim'
         if !empty(findfile(l:sessionPath))
             if a:act == 'save'
                 if input('是否保存本次的會話群組？ (y: Yes, n: No)[n] : ') == 'y'
