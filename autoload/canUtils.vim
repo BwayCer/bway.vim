@@ -48,13 +48,16 @@ endfunction
 
 " 可共用的取得命令行命令文字
 function! s:getCmdTxt(cmdList)
+    let l:separator = ''
     let l:cmdTxt = ''
     for l:argu in a:cmdList
-        if l:argu == ';'
-            let l:cmdTxt .= ';'
+        let l:cmdTxt .= l:separator
+        if l:argu =~# '^%:'
+            let l:cmdTxt .= substitute(l:argu, '%:', '', '')
         else
-            let l:cmdTxt .= '"' . canUtils#SafeQuote(l:argu) . '" '
+            let l:cmdTxt .= '"' . canUtils#SafeQuote(l:argu) . '"'
         endif
+        let l:separator = ' '
     endfor
     return l:cmdTxt
 endfunction
