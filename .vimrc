@@ -63,34 +63,6 @@ call plug#begin('~/.vim/bundle')
 
         nmap <F8> :TagbarToggle<CR>
 
-    " 程式碼風格檢查
-    Plug 'vim-syntastic/syntastic'
-
-        " 除錯工具
-        " let g:syntastic_debug = 9
-        " 有效值: 0,1 ; 預設 0
-        " 主動檢查語法，包含 第一次加載緩衝區 和 保存時。
-        let g:syntastic_check_on_open = 1
-        " 預設 2 ; 是否自動開關顯示窗口
-        "        \ | 0 | 1 | 2 | 3
-        " 自動打開 | X | O | X | O
-        " 自動關閉 | X | O | O | X
-        let g:syntastic_auto_loc_list = 1
-        let g:syntastic_javascript_checkers = ['eslint']
-        let g:syntastic_always_populate_loc_list = 1
-
-        nmap <CR>rcn :lnext<CR>
-
-    " 程式碼風格格式化
-    Plug 'Chiel92/vim-autoformat'
-
-        let g:formatdef_eslint = '"tmpFile=.${RANDOM}.eslint.js'
-            \ . '; cat - > $tmpFile; eslint --fix --no-ignore $tmpFile > /dev/null'
-            \ . '; cat $tmpFile | perl -pe \"chomp if eof\"; rm $tmpFile"'
-        let g:formatters_javascript = ['eslint']
-
-        nmap <CR>rfmt :Autoformat<CR>
-
     " 標記減量預覽
     Plug 'BwayCer/markdown-preview.vim', { 'branch': 'linkInVm', 'for': 'markdown' }
     " autocmd! User markdown-preview.vim echo '[Bway.Plug] 標記減量預覽 已載入'
@@ -356,8 +328,7 @@ call plug#begin('~/.vim/bundle')
             echo '    @rpi : 安裝未安裝的插件   @rpu : 安裝或更新插件   @rpc : 移除未使用的插件目錄'
             echo ' '
             echo '    程式碼檢查：'
-            echo '        @rcn : 跳至下個錯誤點'
-            echo '        @rfs : 刪除多餘空白    @rfmt : 格式化文件'
+            echo '        @rfs : 刪除多餘空白'
             echo ' '
             echo '    命令行著色：'
             echo '        @rcc : 預設/著色切換'
