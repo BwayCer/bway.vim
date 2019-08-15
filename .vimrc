@@ -115,8 +115,8 @@ call plug#begin('~/.vim/bundle')
         " 在 insert 模式啟用 backspace 鍵
         set backspace=2
 
-        " 保留 99 個歷史指令
-        set history=99
+        " 保留 33 個歷史指令
+        set history=33
 
         " 顯示行號
         set number
