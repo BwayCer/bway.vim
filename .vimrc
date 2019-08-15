@@ -37,11 +37,6 @@ call plug#begin('~/.vim/bundle')
         nmap Fb :FufBuffer<CR>
         " nmap Fc :FufDir
 
-    " " Vim 的命令行
-    " Plug 'rosenfeld/conque-term'
-
-        " nmap <C-z> :ConqueTermSplit bash<CR>
-
     " 命令行著色
     Plug 'chrisbra/Colorizer'
 
