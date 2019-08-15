@@ -79,7 +79,7 @@ call plug#begin('~/.vim/bundle')
     " kiang: 打程式碼方塊
     Plug 'johngrib/vim-game-code-break'
 
-        command KiangVimGameCodeBreak :call VimGameCodeBreak#game#main()
+        command! KiangVimGameCodeBreak :call VimGameCodeBreak#game#main()
 
     " 命令由你
     Plug 'BwayCer/cmdbyu.vim'
