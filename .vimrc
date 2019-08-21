@@ -76,6 +76,9 @@ call plug#begin('~/.vim/bundle')
     " Go 程式語言 - 語法提示
     Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 
+    " Dart 程式語言 - 螢光筆、語法檢查、格式化
+    Plug 'dart-lang/dart-vim-plugin'
+
     " kiang: 打程式碼方塊
     Plug 'johngrib/vim-game-code-break'
 
