@@ -274,10 +274,21 @@ call plug#begin('~/.vim/bundle')
 
             nmap <CR>side :call bway#utils#SideRowNumberToggle()<CR>
 
-        " 自動補齊
-        " (keyword: omnifunc)
-        " <C-x><C-o> 為預設的補齊按键组合
-        imap <C-m> <C-x><C-o>
+        " 插入模式補全
+        " :h ins-completion
+        " <C-x><C-o> 為預設的補齊按键组合 (keyword: omnifunc)
+        imap <C-a>l <C-x><C-l>
+        imap <C-a>n <C-x><C-n>
+        imap <C-a>k <C-x><C-k>
+        imap <C-a>t <C-x><C-t>
+        imap <C-a>i <C-x><C-i>
+        imap <C-a>] <C-x><C-]>
+        imap <C-a>f <C-x><C-f>
+        imap <C-a>d <C-x><C-d>
+        imap <C-a>v <C-x><C-v>
+        imap <C-a>u <C-x><C-u>
+        imap <C-a>o <C-x><C-o>
+        imap <C-a>s <C-x><C-s>
 
         " 搜尋
         set incsearch       " 即時的關鍵字匹配 不須等到完全輸入完才顯示結果
