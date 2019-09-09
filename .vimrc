@@ -154,9 +154,6 @@ call plug#begin('~/.vim/bundle')
 
     " >> 會話紀錄 -------
 
-        " TODO
-        echom '.vimrc 會話紀錄'
-
         " :help sessionoptions
         set sessionoptions-=curdir
         set sessionoptions+=sesdir
@@ -326,18 +323,20 @@ call plug#begin('~/.vim/bundle')
             echo '    @s : 儲存文件   @q : 退出文件'
 
             echo ' '
-            echo '會話紀錄：'
-            echo '    @rss,  @rsr,  @rsd  : 保存、恢復、刪除自定義名稱的會話'
-            echo '    @rssc, @rsrc, @rsdc : 保存、恢復、刪除名為 Cupcake 的會話'
-            echo '    @rssd, @rsrd, @rsdd : 保存、恢復、刪除名為 Donut 的會話'
-            echo '    @rsse, @rsre, @rsde : 保存、恢復、刪除名為 Eclair 的會話'
-
+            echo '主程式包： (BwayCer/bway.vim)'
             echo ' '
-            echo '插件管理：'
-            echo '    @rpi : 安裝未安裝的插件   @rpu : 安裝或更新插件   @rpc : 移除未使用的插件目錄'
+            echo '    會話紀錄：'
+            echo '        @rss,  @rsr,  @rsd  : 保存、恢復、刪除主要會話'
+            echo '        @rssc, @rsrc, @rsdc : 保存、恢復、刪除名為 Cupcake 的會話'
+            echo '        @rssd, @rsrd, @rsdd : 保存、恢復、刪除名為 Donut 的會話'
+            echo '        @rsse, @rsre, @rsde : 保存、恢復、刪除名為 Eclair 的會話'
             echo ' '
             echo '    程式碼檢查：'
             echo '        @rfs : 刪除多餘空白'
+
+            echo ' '
+            echo '程式包管理：'
+            echo '    @rpi : 安裝未安裝的插件   @rpu : 安裝或更新插件   @rpc : 移除未使用的插件目錄'
             echo ' '
             echo '    命令行著色：'
             echo '        @rcc : 預設/著色切換'
