@@ -310,6 +310,10 @@ call plug#begin('~/.vim/bundle')
         " autocmd BufWritePre * call bway#utils#RemoveTrailingSpace()
         nmap <CR>rfs :call bway#utils#RemoveTrailingSpace()<CR>
 
+        " 註解/反註解選取行
+        noremap <CR>/ :call bway#utils#Comment(0)<CR>
+        noremap <CR>? :call bway#utils#Comment(1)<CR>
+
 
     " >> 常用命令提示 -------
 
@@ -331,8 +335,11 @@ call plug#begin('~/.vim/bundle')
             echo '        @rssd, @rsrd, @rsdd : 保存、恢復、刪除名為 Donut 的會話'
             echo '        @rsse, @rsre, @rsde : 保存、恢復、刪除名為 Eclair 的會話'
             echo ' '
-            echo '    程式碼檢查：'
+            echo '    編輯小工具：'
             echo '        @rfs : 刪除多餘空白'
+            echo ' '
+            echo '        > 選取模式'
+            echo '        @?   : 註解選取行      @/   : 反註解選取行'
 
             echo ' '
             echo '程式包管理：'
