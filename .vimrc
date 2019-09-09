@@ -63,34 +63,6 @@ call plug#begin('~/.vim/bundle')
 
         nmap <F8> :TagbarToggle<CR>
 
-    " 程式碼風格檢查
-    Plug 'vim-syntastic/syntastic'
-
-        " 除錯工具
-        " let g:syntastic_debug = 9
-        " 有效值: 0,1 ; 預設 0
-        " 主動檢查語法，包含 第一次加載緩衝區 和 保存時。
-        let g:syntastic_check_on_open = 1
-        " 預設 2 ; 是否自動開關顯示窗口
-        "        \ | 0 | 1 | 2 | 3
-        " 自動打開 | X | O | X | O
-        " 自動關閉 | X | O | O | X
-        let g:syntastic_auto_loc_list = 1
-        let g:syntastic_javascript_checkers = ['eslint']
-        let g:syntastic_always_populate_loc_list = 1
-
-        nmap <CR>rcn :lnext<CR>
-
-    " 程式碼風格格式化
-    Plug 'Chiel92/vim-autoformat'
-
-        let g:formatdef_eslint = '"tmpFile=.${RANDOM}.eslint.js'
-            \ . '; cat - > $tmpFile; eslint --fix --no-ignore $tmpFile > /dev/null'
-            \ . '; cat $tmpFile | perl -pe \"chomp if eof\"; rm $tmpFile"'
-        let g:formatters_javascript = ['eslint']
-
-        nmap <CR>rfmt :Autoformat<CR>
-
     " 標記減量預覽
     Plug 'BwayCer/markdown-preview.vim', { 'branch': 'linkInVm', 'for': 'markdown' }
     " autocmd! User markdown-preview.vim echo '[Bway.Plug] 標記減量預覽 已載入'
@@ -113,6 +85,27 @@ call plug#begin('~/.vim/bundle')
     Plug 'johngrib/vim-game-code-break'
 
         command KiangVimGameCodeBreak :call VimGameCodeBreak#game#main()
+
+    " 命令由你
+    Plug 'BwayCer/cmdbyu.vim'
+
+        let g:cmdbyu_globalDirectory = fnamemodify('~', ':p') . 'gitman'
+        let g:cmdbyu_dockerCommand
+            \ = 'docker run --rm -it {volume}'
+            \ . ' --network host local/mizarch {shCmd}'
+
+        nmap <CR>us      :CmdByURun syntax
+        nmap <CR>usg     :CmdByURun syntax global
+        nmap <CR>Us  :CmdByUHostRun syntax
+        nmap <CR>Usg :CmdByUHostRun syntax global
+        nmap <CR>ur      :CmdByURun syntaxRun
+        nmap <CR>urg     :CmdByURun syntaxRun global
+        nmap <CR>Ur  :CmdByUHostRun syntaxRun
+        nmap <CR>Urg :CmdByUHostRun syntaxRun global
+        nmap <CR>ud      :CmdByURun syntaxDev
+        nmap <CR>udg     :CmdByURun syntaxDev global
+        nmap <CR>Ud  :CmdByUHostRun syntaxDev
+        nmap <CR>Udg :CmdByUHostRun syntaxDev global
 
 
     " >> 基礎設置 -------
@@ -335,8 +328,7 @@ call plug#begin('~/.vim/bundle')
             echo '    @rpi : 安裝未安裝的插件   @rpu : 安裝或更新插件   @rpc : 移除未使用的插件目錄'
             echo ' '
             echo '    程式碼檢查：'
-            echo '        @rcn : 跳至下個錯誤點'
-            echo '        @rfs : 刪除多餘空白    @rfmt : 格式化文件'
+            echo '        @rfs : 刪除多餘空白'
             echo ' '
             echo '    命令行著色：'
             echo '        @rcc : 預設/著色切換'
@@ -353,6 +345,12 @@ call plug#begin('~/.vim/bundle')
             echo '    Go 程式語言：'
             echo '        @gof (@gofmt) : 格式化'
             echo '        @gor (@gorun) : 運行'
+            echo ' '
+            echo '    命令由你：'
+            echo '        > <u|U> 小寫表示以容器運行； 反之以主機運行'
+            echo '        > [g]   可選。 表示執行全域的執行文件'
+            echo '        @<u|U>s[g] : syntax'
+            echo '        @<u|U>r[g] : run       @<u|U>d[g] : dev'
 
             echo ' '
             echo '緩衝區：'
