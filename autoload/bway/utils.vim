@@ -55,7 +55,7 @@ endfunction
 let s:fileCommentList = {}
 let s:tmpFileCommentList = [
     \ ['"', 'vim'],
-    \ ['#', 'sh', 'dockerfile'],
+    \ ['#', 'sh', 'yaml', 'dockerfile'],
     \ ['\/\/', 'javascript', 'scss', 'dart', 'go'],
 \ ]
 for s:tmpFileComment in s:tmpFileCommentList
