@@ -61,14 +61,14 @@ call canUtils#ImportPython(s:_dirvi . '/lib/')
         if !empty(findfile(l:sessionPath))
             if a:act == 'save'
                 if input('是否保存本次的會話群組？ (y: Yes, n: No)[n] : ') == 'y'
-                    BwayRecordSessionSave
+                    BwayRecordSession save
                 endif
                 return
             elseif a:act == 'restore'
                 if input('是否恢復上次的會話群組？ (y: Yes, n: No)[n] : ') == 'y'
-                    BwayRecordSessionRestore
+                    BwayRecordSession restore
                 elseif input('是否清除上次的會話群組？ (y: Yes, n: No)[n] : ') == 'y'
-                    BwayRecordSessionRemove
+                    BwayRecordSession delete
                 endif
             endif
         endif
