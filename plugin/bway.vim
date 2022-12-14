@@ -10,7 +10,24 @@ let s:_dirvi = fnamemodify(resolve(expand('<sfile>:p')), ':h:h')
     endfunction
 
 
+    " 設定縮排
     command! -nargs=* BwaySetIndentTabWidth :call bway#utils#SetIndentTabWidth(<f-args>)
+    let g:fileIndentTabWidthInfo = {}
+    let s:tmpSetItemList = [
+        \ [2, 'sh', 'vim', 'markdown',
+        \     'json', 'yaml',
+        \     'javascript', 'dart',
+        \     'pug', 'css', 'scss',
+        \     'vue'],
+        \ [4, 'dockerfile', 'python'],
+        \ [8, 'go'],
+    \ ]
+    for s:tmpSetItem in s:tmpSetItemList
+        for s:tmpItem in s:tmpSetItem[1:]
+            let g:fileIndentTabWidthInfo[s:tmpItem] = s:tmpSetItem[0]
+        endfor
+    endfor
+    autocmd BufReadPost * :call bway#utils#AutoSetIndentTabWidth()
 
     " 設定註解字符
     let g:fileCommentInfo = {}

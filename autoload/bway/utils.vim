@@ -3,8 +3,20 @@
 function! bway#utils#SetIndentTabWidth(width)
     let &tabstop = a:width
     let &shiftwidth = a:width
-    echo '以 ' . a:width . ' 個單位縮排'
+    " echo '以 ' . a:width . ' 個單位縮排'
 endfunction
+" 自動依文件類型設定縮排寬度
+function! bway#utils#AutoSetIndentTabWidth()
+    if !has_key(g:fileIndentTabWidthInfo, &filetype)
+        echo '沒有 ' . &filetype . ' 文件類型的縮排資訊'
+        return
+    endif
+
+    let l:width = g:fileIndentTabWidthInfo[&filetype]
+    echo &filetype . ' 文件類型的縮排為 ' . l:width
+    call bway#utils#SetIndentTabWidth(l:width)
+endfunction
+
 
 " 側邊欄開關
 " 這邊有個 py 範例捨不得刪
