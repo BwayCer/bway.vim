@@ -180,6 +180,12 @@ call plug#begin('~/.vim/bundle')
 
         " 設定行號為：粗體，前景色為深灰色，沒有背景色
         hi LineNr cterm=bold ctermfg=DarkGrey ctermbg=NONE
+        " 設定常數數值(被宣告的文字、數值...等等)為：亮紅色
+        hi Constant cterm=underline ctermfg=207 guifg=#ffa0a0
+
+        " vim diff
+        highlight DiffChange term=bold ctermbg=52 guibg=DarkMagenta
+        highlight DiffText   term=reverse cterm=bold ctermbg=162 gui=bold guibg=Red
 
 
     " >> 狀態列 -------
