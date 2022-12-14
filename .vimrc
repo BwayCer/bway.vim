@@ -53,11 +53,6 @@ call plug#begin('~/.vim/bundle')
 
         nmap <CR>rcc :call Bway_rewrite_ChangeColorToggle()<CR>
 
-    " 程式碼目錄 需額外安裝 ctags
-    Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
-
-        nmap <F8> :TagbarToggle<CR>
-
     " 標記減量預覽
     Plug 'BwayCer/markdown-preview.vim', { 'branch': 'linkInVm', 'for': 'markdown' }
     " autocmd! User markdown-preview.vim echo '[Bway.Plug] 標記減量預覽 已載入'
@@ -78,6 +73,12 @@ call plug#begin('~/.vim/bundle')
 
     " Dart 程式語言 - 螢光筆、語法檢查、格式化
     Plug 'dart-lang/dart-vim-plugin'
+
+    " Pug 程式語言 - 螢光筆
+    Plug 'digitaltoad/vim-pug'
+
+    " Solidity 程式語言 - 螢光筆
+    Plug 'tomlion/vim-solidity'
 
     " kiang: 打程式碼方塊
     Plug 'johngrib/vim-game-code-break'
