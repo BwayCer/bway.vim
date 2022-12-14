@@ -12,6 +12,20 @@ call canUtils#ImportPython(s:_dirvi . '/lib/')
 
     command! -nargs=* BwaySetIndentTabWidth :call bway#utils#SetIndentTabWidth(<f-args>)
 
+    " 設定註解字符
+    let g:fileCommentInfo = {}
+    let s:tmpSetItemList = [
+        \ ['"', 'vim'],
+        \ ['#', 'sh', 'make', 'python', 'yaml', 'dockerfile'],
+        \ ['\/\/', 'javascript', 'pug', 'scss', 'dart', 'go',
+        \     'solidity', 'vue'],
+    \ ]
+    for s:tmpSetItem in s:tmpSetItemList
+        for s:tmpItem in s:tmpSetItem[1:]
+            let g:fileCommentInfo[s:tmpItem] = s:tmpSetItem[0]
+        endfor
+    endfor
+
 
 " >> 狀態列 -------
 

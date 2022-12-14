@@ -38,30 +38,18 @@ endfunction
 " 註解/反註解 (單行) 選取範圍
 " https://vi.stackexchange.com/questions/4366
 function! bway#utils#Comment(method)
-    if !has_key(s:fileCommentList, &filetype)
+    if !has_key(g:fileCommentInfo, &filetype)
         echo '沒有 ' . &filetype . ' 文件類型的註解資訊'
         return
     endif
 
     silent! normal! zO
 
-    let l:symbol = s:fileCommentList[&filetype]
+    let l:symbol = g:fileCommentInfo[&filetype]
     if a:method == 1
         exec 'silent! s/\(\S\)/' . l:symbol . ' \1/'
     else
         exec 'silent! s/^\(\s*\)' . l:symbol . ' /\1/'
     endif
 endfunction
-let s:fileCommentList = {}
-let s:tmpFileCommentList = [
-    \ ['"', 'vim'],
-    \ ['#', 'sh', 'yaml', 'dockerfile'],
-    \ ['\/\/', 'javascript', 'scss', 'dart', 'go'],
-\ ]
-for s:tmpFileComment in s:tmpFileCommentList
-    let s:tmpCommentSymbol = s:tmpFileComment[0]
-    for s:tmpFileType in s:tmpFileComment[1:]
-        let s:fileCommentList[s:tmpFileType] = s:tmpCommentSymbol
-    endfor
-endfor
 
