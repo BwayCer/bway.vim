@@ -7,20 +7,34 @@ function! bway#utils#SetIndentTabWidth(width)
 endfunction
 
 " 側邊欄開關
-" @requires sideRowNumber.py
+" 這邊有個 py 範例捨不得刪
+"   @requires sideRowNumber.py
+"   let ynEnable = py3eval('bway_sideRowNumber_isEnable(' . bufnr('%') . ')')
+let g:fileSideRowNumberToggleInfo = {}
 function! bway#utils#SideRowNumberToggle()
-    let ynEnable = py3eval('bway_sideRowNumber_isEnable(' . bufnr('%') . ')')
-    if ynEnable == 1
-        set number
-        set relativenumber
-        set foldenable
-        set foldcolumn=2
+
+    let l:bufnrKey = bufnr('%')
+
+    echo l:bufnrKey
+    if !has_key(g:fileSideRowNumberToggleInfo, l:bufnrKey)
+        \ || g:fileSideRowNumberToggleInfo[l:bufnrKey] == 1
+        let l:ynEnable = 0
     else
+        let l:ynEnable = 1
+    endif
+
+    if l:ynEnable == 0
         set nonumber
         set norelativenumber
         set nofoldenable
         set foldcolumn=0
+    else
+        set number
+        set relativenumber
+        set foldenable
+        set foldcolumn=2
     endif
+    let g:fileSideRowNumberToggleInfo[l:bufnrKey] = l:ynEnable
 endfunction
 
 
