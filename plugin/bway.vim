@@ -48,7 +48,7 @@ let s:_dirvi = fnamemodify(resolve(expand('<sfile>:p')), ':h:h')
 
     " 設定樣式
     set statusline=%1*[B%{bway#statusLine#GetBufFileTotal()}-%n]%m%*
-    set statusline+=%9*\ %y%r%*
+    set statusline+=%9*%y%r%*
     set statusline+=%8*\ %{bway#statusLine#GetFileSize(@%)}\ %*
     set statusline+=%<%7*\ %{&ff}\ \|\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\")}\ %*
     set statusline+=%3*\ %F\ %*
@@ -81,7 +81,7 @@ let s:_dirvi = fnamemodify(resolve(expand('<sfile>:p')), ':h:h')
     " 打包當前 Vim 的狀態，將其儲存或恢復。
 
     " 設定儲存目錄路徑
-    let g:bway_getVar_conf.recordSession_storePath = '~/.vim/mySession'
+    let g:bway_getVar_conf.recordSession_storePath = fnamemodify('~', ':p') . '.vim/mySession'
 
     command! -nargs=* BwayRecordSession :call bway#recordSession#Operate(<f-args>)
 

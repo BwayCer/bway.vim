@@ -114,6 +114,9 @@ call plug#begin('~/.vim/bundle')
         set enc=utf8
         syntax on
 
+        " 顯示命令列補全匹配的清單
+        set wildmenu
+
         " 滑鼠功能只在 Visual 模式下使用
         set mouse=v
         " 在 insert 模式啟用 backspace 鍵
