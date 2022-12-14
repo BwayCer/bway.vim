@@ -350,7 +350,8 @@ call plug#begin('~/.vim/bundle')
 
             echo ' '
             echo '程式包管理：'
-            echo '    @rpi : 安裝未安裝的插件   @rpu : 安裝或更新插件   @rpc : 移除未使用的插件目錄'
+            echo '    @rvpi : 安裝未安裝的插件   @rvpc : 移除未使用的插件目錄'
+            echo '    @rvpu : 安裝或更新插件'
             echo ' '
             echo '    命令行著色：'
             echo '        @rcc : 預設/著色切換'
