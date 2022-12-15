@@ -54,6 +54,7 @@
 
       if has('nvim')
         execute 'source ' . g:vimDir . '/baseon/plugNeo.vim'
+        execute 'source ' . g:vimDir . '/baseon/plug-coc.vim'
       endif
 
     " 初始化插件系統
