@@ -28,13 +28,6 @@ Plug 'chrisbra/Colorizer'
 
   nmap <CR>rcc :call Bway_rewrite_ChangeColorToggle()<CR>
 
-" 標記減量預覽
-Plug 'BwayCer/markdown-preview.vim', { 'branch': 'linkInVm', 'for': 'markdown' }
-" autocmd! User markdown-preview.vim echo '[Bway.Plug] 標記減量預覽 已載入'
-
-  nmap <CR>rmd :MarkdownPreview<CR>
-  nmap <CR>rmdstop :MarkdownPreviewStop<CR>
-
 " Go 程式語言
 Plug 'fatih/vim-go'
 
