@@ -2,6 +2,25 @@
 " 中文說明文件
 Plug 'chusiang/vimcdoc-tw'
 
+" 翻譯器
+Plug 'voldikss/vim-translator'
+
+  let g:translator_default_engines = ['google', 'haici']
+  let g:translator_target_lang = 'zh-TW'
+  let g:translator_source_lang = 'auto'
+
+  " 在命令行中顯示翻譯
+  nmap <silent> <CR>TT <Plug>Translate
+  vmap <silent> <CR>TT <Plug>TranslateV
+  " 在浮動框中顯示翻譯
+  nmap <silent> <CR>TW <Plug>TranslateW
+  vmap <silent> <CR>TW <Plug>TranslateWV
+  " 用翻譯替換文本
+  nmap <silent> <CR>TR <Plug>TranslateR
+  vmap <silent> <CR>TR <Plug>TranslateRV
+  " 翻譯剪貼板中的文本
+  nmap <silent> <CR>TX <Plug>TranslateX
+
 " Vim 腳本的函式庫
 Plug 'vim-scripts/L9'
 
