@@ -69,6 +69,8 @@ endfunction
 
 " 運行命令行命令
 function! canUtils#Sh(...)
+    " TODO: DEBUG:
+    echom s:getCmdTxt(a:000)
     return system(s:getCmdTxt(a:000))
 endfunction
 
