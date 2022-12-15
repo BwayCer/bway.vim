@@ -1,7 +1,7 @@
 
 let g:bway_getVar_conf = {}
 let s:_dirvi = fnamemodify(resolve(expand('<sfile>:p')), ':h:h')
-call canUtils#ImportPython(s:_dirvi . '/lib/')
+" call canUtils#ImportPython(s:_dirvi . '/lib/')
 
 
     " 取得設定變數值
@@ -10,14 +10,45 @@ call canUtils#ImportPython(s:_dirvi . '/lib/')
     endfunction
 
 
+    " 設定縮排
     command! -nargs=* BwaySetIndentTabWidth :call bway#utils#SetIndentTabWidth(<f-args>)
+    let g:fileIndentTabWidthInfo = {}
+    let s:tmpSetItemList = [
+        \ [2, 'sh', 'vim', 'markdown',
+        \     'json', 'yaml',
+        \     'javascript', 'dart',
+        \     'pug', 'css', 'scss',
+        \     'vue'],
+        \ [4, 'dockerfile', 'python'],
+        \ [8, 'go'],
+    \ ]
+    for s:tmpSetItem in s:tmpSetItemList
+        for s:tmpItem in s:tmpSetItem[1:]
+            let g:fileIndentTabWidthInfo[s:tmpItem] = s:tmpSetItem[0]
+        endfor
+    endfor
+    autocmd BufReadPost * :call bway#utils#AutoSetIndentTabWidth()
+
+    " 設定註解字符
+    let g:fileCommentInfo = {}
+    let s:tmpSetItemList = [
+        \ ['"', 'vim'],
+        \ ['#', 'sh', 'make', 'python', 'yaml', 'dockerfile'],
+        \ ['\/\/', 'javascript', 'pug', 'scss', 'dart', 'go',
+        \     'solidity', 'vue'],
+    \ ]
+    for s:tmpSetItem in s:tmpSetItemList
+        for s:tmpItem in s:tmpSetItem[1:]
+            let g:fileCommentInfo[s:tmpItem] = s:tmpSetItem[0]
+        endfor
+    endfor
 
 
 " >> 狀態列 -------
 
     " 設定樣式
     set statusline=%1*[B%{bway#statusLine#GetBufFileTotal()}-%n]%m%*
-    set statusline+=%9*\ %y%r%*
+    set statusline+=%9*%y%r%*
     set statusline+=%8*\ %{bway#statusLine#GetFileSize(@%)}\ %*
     set statusline+=%<%7*\ %{&ff}\ \|\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\")}\ %*
     set statusline+=%3*\ %F\ %*
@@ -50,7 +81,7 @@ call canUtils#ImportPython(s:_dirvi . '/lib/')
     " 打包當前 Vim 的狀態，將其儲存或恢復。
 
     " 設定儲存目錄路徑
-    let g:bway_getVar_conf.recordSession_storePath = '~/.vim/mySession'
+    let g:bway_getVar_conf.recordSession_storePath = fnamemodify('~', ':p') . '.vim/mySession'
 
     command! -nargs=* BwayRecordSession :call bway#recordSession#Operate(<f-args>)
 
@@ -61,14 +92,14 @@ call canUtils#ImportPython(s:_dirvi . '/lib/')
         if !empty(findfile(l:sessionPath))
             if a:act == 'save'
                 if input('是否保存本次的會話群組？ (y: Yes, n: No)[n] : ') == 'y'
-                    BwayRecordSessionSave
+                    BwayRecordSession save
                 endif
                 return
             elseif a:act == 'restore'
                 if input('是否恢復上次的會話群組？ (y: Yes, n: No)[n] : ') == 'y'
-                    BwayRecordSessionRestore
+                    BwayRecordSession restore
                 elseif input('是否清除上次的會話群組？ (y: Yes, n: No)[n] : ') == 'y'
-                    BwayRecordSessionRemove
+                    BwayRecordSession delete
                 endif
             endif
         endif

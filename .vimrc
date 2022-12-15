@@ -37,11 +37,6 @@ call plug#begin('~/.vim/bundle')
         nmap Fb :FufBuffer<CR>
         " nmap Fc :FufDir
 
-    " " Vim 的命令行
-    " Plug 'rosenfeld/conque-term'
-
-        " nmap <C-z> :ConqueTermSplit bash<CR>
-
     " 命令行著色
     Plug 'chrisbra/Colorizer'
 
@@ -57,11 +52,6 @@ call plug#begin('~/.vim/bundle')
         endfunction
 
         nmap <CR>rcc :call Bway_rewrite_ChangeColorToggle()<CR>
-
-    " 程式碼目錄 需額外安裝 ctags
-    Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
-
-        nmap <F8> :TagbarToggle<CR>
 
     " 標記減量預覽
     Plug 'BwayCer/markdown-preview.vim', { 'branch': 'linkInVm', 'for': 'markdown' }
@@ -81,10 +71,19 @@ call plug#begin('~/.vim/bundle')
     " Go 程式語言 - 語法提示
     Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 
+    " Dart 程式語言 - 螢光筆、語法檢查、格式化
+    Plug 'dart-lang/dart-vim-plugin'
+
+    " Pug 程式語言 - 螢光筆
+    Plug 'digitaltoad/vim-pug'
+
+    " Solidity 程式語言 - 螢光筆
+    Plug 'tomlion/vim-solidity'
+
     " kiang: 打程式碼方塊
     Plug 'johngrib/vim-game-code-break'
 
-        command KiangVimGameCodeBreak :call VimGameCodeBreak#game#main()
+        command! KiangVimGameCodeBreak :call VimGameCodeBreak#game#main()
 
     " 命令由你
     Plug 'BwayCer/cmdbyu.vim'
@@ -115,13 +114,16 @@ call plug#begin('~/.vim/bundle')
         set enc=utf8
         syntax on
 
+        " 顯示命令列補全匹配的清單
+        set wildmenu
+
         " 滑鼠功能只在 Visual 模式下使用
         set mouse=v
         " 在 insert 模式啟用 backspace 鍵
         set backspace=2
 
-        " 保留 99 個歷史指令
-        set history=99
+        " 保留 33 個歷史指令
+        set history=33
 
         " 顯示行號
         set number
@@ -156,9 +158,6 @@ call plug#begin('~/.vim/bundle')
 
     " >> 會話紀錄 -------
 
-        " TODO
-        echom '.vimrc 會話紀錄'
-
         " :help sessionoptions
         set sessionoptions-=curdir
         set sessionoptions+=sesdir
@@ -184,6 +183,12 @@ call plug#begin('~/.vim/bundle')
 
         " 設定行號為：粗體，前景色為深灰色，沒有背景色
         hi LineNr cterm=bold ctermfg=DarkGrey ctermbg=NONE
+        " 設定常數數值(被宣告的文字、數值...等等)為：亮紅色
+        hi Constant cterm=underline ctermfg=207 guifg=#ffa0a0
+
+        " vim diff
+        highlight DiffChange term=bold ctermbg=52 guibg=DarkMagenta
+        highlight DiffText   term=reverse cterm=bold ctermbg=162 gui=bold guibg=Red
 
 
     " >> 狀態列 -------
@@ -276,10 +281,21 @@ call plug#begin('~/.vim/bundle')
 
             nmap <CR>side :call bway#utils#SideRowNumberToggle()<CR>
 
-        " 自動補齊
-        " (keyword: omnifunc)
-        " <C-x><C-o> 為預設的補齊按键组合
-        imap <C-m> <C-x><C-o>
+        " 插入模式補全
+        " :h ins-completion
+        " <C-x><C-o> 為預設的補齊按键组合 (keyword: omnifunc)
+        imap <C-a>l <C-x><C-l>
+        imap <C-a>n <C-x><C-n>
+        imap <C-a>k <C-x><C-k>
+        imap <C-a>t <C-x><C-t>
+        imap <C-a>i <C-x><C-i>
+        imap <C-a>] <C-x><C-]>
+        imap <C-a>f <C-x><C-f>
+        imap <C-a>d <C-x><C-d>
+        imap <C-a>v <C-x><C-v>
+        imap <C-a>u <C-x><C-u>
+        imap <C-a>o <C-x><C-o>
+        imap <C-a>s <C-x><C-s>
 
         " 搜尋
         set incsearch       " 即時的關鍵字匹配 不須等到完全輸入完才顯示結果
@@ -304,6 +320,10 @@ call plug#begin('~/.vim/bundle')
         " autocmd BufWritePre * call bway#utils#RemoveTrailingSpace()
         nmap <CR>rfs :call bway#utils#RemoveTrailingSpace()<CR>
 
+        " 註解/反註解選取行
+        noremap <CR>/ :call bway#utils#Comment(0)<CR>
+        noremap <CR>? :call bway#utils#Comment(1)<CR>
+
 
     " >> 常用命令提示 -------
 
@@ -317,18 +337,24 @@ call plug#begin('~/.vim/bundle')
             echo '    @s : 儲存文件   @q : 退出文件'
 
             echo ' '
-            echo '會話紀錄：'
-            echo '    @rss,  @rsr,  @rsd  : 保存、恢復、刪除自定義名稱的會話'
-            echo '    @rssc, @rsrc, @rsdc : 保存、恢復、刪除名為 Cupcake 的會話'
-            echo '    @rssd, @rsrd, @rsdd : 保存、恢復、刪除名為 Donut 的會話'
-            echo '    @rsse, @rsre, @rsde : 保存、恢復、刪除名為 Eclair 的會話'
+            echo '主程式包： (BwayCer/bway.vim)'
+            echo ' '
+            echo '    會話紀錄：'
+            echo '        @rss,  @rsr,  @rsd  : 保存、恢復、刪除主要會話'
+            echo '        @rssc, @rsrc, @rsdc : 保存、恢復、刪除名為 Cupcake 的會話'
+            echo '        @rssd, @rsrd, @rsdd : 保存、恢復、刪除名為 Donut 的會話'
+            echo '        @rsse, @rsre, @rsde : 保存、恢復、刪除名為 Eclair 的會話'
+            echo ' '
+            echo '    編輯小工具：'
+            echo '        @rfs : 刪除多餘空白'
+            echo ' '
+            echo '        > 選取模式'
+            echo '        @?   : 註解選取行      @/   : 反註解選取行'
 
             echo ' '
-            echo '插件管理：'
-            echo '    @rpi : 安裝未安裝的插件   @rpu : 安裝或更新插件   @rpc : 移除未使用的插件目錄'
-            echo ' '
-            echo '    程式碼檢查：'
-            echo '        @rfs : 刪除多餘空白'
+            echo '程式包管理：'
+            echo '    @rvpi : 安裝未安裝的插件   @rvpc : 移除未使用的插件目錄'
+            echo '    @rvpu : 安裝或更新插件'
             echo ' '
             echo '    命令行著色：'
             echo '        @rcc : 預設/著色切換'
