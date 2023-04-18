@@ -1,4 +1,12 @@
 
+" >> -------
+
+  if filereadable(g:vimDir . '/baseon/neo/plug_coc.vim')
+        \ && executable('node')
+    exec 'source ' . g:vimDir . '/baseon/neo/plug_coc.vim'
+  endif
+
+
 " 標記減量預覽
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
