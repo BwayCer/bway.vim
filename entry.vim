@@ -136,7 +136,7 @@
     echo ' '
     echo '    會話紀錄：'
     echo '        @rsp  : 問答式選擇保存、恢復、刪除會話'
-    echo '        @rsp<c|d|e|f> : Cupcake, Donut, Eclair, Froyo 的問答式會話操作'
+    echo '        @rs<c|d|e|f> : 對 Cupcake, Donut, Eclair, Froyo 會話名稱的問答式操作'
 
     echo ' '
     echo '程式包管理：'

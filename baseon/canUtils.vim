@@ -8,14 +8,6 @@
 
 " 取得設定值
 " 程式包有可能以延遲的方式載入，因此可避免覆蓋過使用者的設定值
-" ```
-" let g:bway_getVar_conf = {}
-"
-" " 取得設定變數值
-" function! BwayGetVar(name)
-"   return canUtils#GetVar('bway', a:name)
-" endfunction
-" ```
 function! canUtils#GetVar(prifix, name)
   let l:result = get(g:, a:prifix . '_' . a:name)
   if !empty(l:result)

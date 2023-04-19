@@ -38,9 +38,9 @@
   " 設定儲存目錄路徑
   command! -nargs=* RecordSession :call recordSession#Prompt(<f-args>)
 
-    nmap <CR>rsp  :RecordSession<CR>
-    nmap <CR>rspc :RecordSession Cupcake<CR>
-    nmap <CR>rspd :RecordSession Donut<CR>
-    nmap <CR>rspe :RecordSession Eclair<CR>
-    nmap <CR>rspf :RecordSession Froyo<CR>
+    nmap <CR>rsp :RecordSession<CR>
+    nmap <CR>rsc :RecordSession Cupcake<CR>
+    nmap <CR>rsd :RecordSession Donut<CR>
+    nmap <CR>rse :RecordSession Eclair<CR>
+    nmap <CR>rsf :RecordSession Froyo<CR>
 
