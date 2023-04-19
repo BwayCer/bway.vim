@@ -42,6 +42,13 @@ Plug 'vim-scripts/FuzzyFinder'
   nmap Fb :FufBuffer<CR>
   " nmap Fc :FufDir
 
+" 文本目錄
+Plug 'preservim/tagbar'
+  " command: ctags
+  " dart: only clone https://github.com/tomas-ingram/dart-ctags and pub global
+
+  nmap <F8> :TagbarToggle<CR>
+
 " 命令行著色
 Plug 'chrisbra/Colorizer'
 

@@ -155,7 +155,7 @@
     echo '    查找文件：'
     echo '        Ff : 開啟指定路徑文件  Fb : 開啟指定緩衝區文件'
     echo ' '
-    echo '    程式碼目錄：'
+    echo '    文本目錄：'
     echo '        <F8> : 開啟/關閉'
     echo ' '
     echo '    Go 程式語言：'
