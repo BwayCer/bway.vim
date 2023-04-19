@@ -9,62 +9,33 @@
   endfunction
 
 
-" Plug bway
-
-  " 設定縮排
-  command! -nargs=* BwaySetIndentTabWidth :call bway#utils#SetIndentTabWidth(<f-args>)
-
-    nmap <CR>tab  :BwaySetIndentTabWidth
-    nmap <CR>tab2 :BwaySetIndentTabWidth 2<CR>
-    nmap <CR>tab4 :BwaySetIndentTabWidth 4<CR>
-    nmap <CR>tab8 :BwaySetIndentTabWidth 8<CR>
-
-  let g:fileIndentTabWidthInfo = {}
-  let s:tmpSetItemList = [
-        \   [2, 'sh', 'vim', 'markdown',
-        \       'json', 'yaml',
-        \       'javascript', 'dart',
-        \       'pug', 'css', 'scss',
-        \       'vue'],
-        \   [4, 'dockerfile', 'python'],
-        \   [8, 'go'],
-        \ ]
-  for s:tmpSetItem in s:tmpSetItemList
-    for s:tmpItem in s:tmpSetItem[1:]
-      let g:fileIndentTabWidthInfo[s:tmpItem] = s:tmpSetItem[0]
-    endfor
-  endfor
-  autocmd! BufReadPost * :call bway#utils#AutoSetIndentTabWidth()
-
-
-  " 設定註解字符
-  let g:fileCommentInfo = {}
-  let s:tmpSetItemList = [
-        \   ['"', 'vim'],
-        \   ['#', 'sh', 'make', 'python', 'yaml', 'dockerfile'],
-        \   ['\/\/', 'javascript', 'dart', 'go',
-        \         'pug', 'scss', 'solidity', 'vue'],
-        \ ]
-  for s:tmpSetItem in s:tmpSetItemList
-    for s:tmpItem in s:tmpSetItem[1:]
-      let g:fileCommentInfo[s:tmpItem] = s:tmpSetItem[0]
-    endfor
-  endfor
-
-  " 註解/反註解選取行
-  map <CR>/ :call bway#utils#Comment(0)<CR>
-  map <CR>? :call bway#utils#Comment(1)<CR>
-
+" Plug singleFile/utils
 
   " 側邊欄開關
-  nmap <CR>side :call bway#utils#SideRowNumberToggle()<CR>
+  nmap <CR>side :call utils#SideRowNumberToggle()<CR>
+
+
+  " 設定縮排
+  command! -nargs=* SetIndentTabWidth :call utils#SetIndentTabWidth(<f-args>)
+
+    nmap <CR>tab  :SetIndentTabWidth
+    nmap <CR>tab2 :SetIndentTabWidth 2<CR>
+    nmap <CR>tab4 :SetIndentTabWidth 4<CR>
+    nmap <CR>tab8 :SetIndentTabWidth 8<CR>
+
+  autocmd! FileType * :call utils#AutoSetIndentTabWidth()
+
+
+  " 註解/反註解選取行
+  map <CR>/ :call utils#Comment(0)<CR>
+  map <CR>? :call utils#Comment(1)<CR>
 
 
   " 刪除多餘空白
-  " 程式碼風格格式化 'Chiel92/vim-autoformat' 包含了此功能
-  " 不過其功能過於強硬
-  " autocmd BufWritePre * call bway#utils#RemoveTrailingSpace()
-  nmap <CR>rfs :call bway#utils#RemoveTrailingSpace()<CR>
+  "   程式碼風格格式化 'Chiel92/vim-autoformat' 包含了此功能
+  "   不過其功能過於強硬
+  nmap <CR>rfs :call utils#RemoveTrailingSpace()<CR>
+  " autocmd BufWritePre * call utils#RemoveTrailingSpace()
 
 
 " Plug bway: 會話紀錄
