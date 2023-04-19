@@ -3,24 +3,8 @@
 " 若依賴本文件，請將本文件複製至 `~/.vim/autoload/canUtils.vim`。
 
 
-" 取得 vim 程式包目錄的方法
-" let s:_dirvi = fnamemodify(resolve(expand('<sfile>:p')), '[:h ...]')
-
-" 取得設定值
-" 程式包有可能以延遲的方式載入，因此可避免覆蓋過使用者的設定值
-function! canUtils#GetVar(prifix, name)
-  let l:result = get(g:, a:prifix . '_' . a:name)
-  if !empty(l:result)
-    return l:result
-  endif
-
-  let l:conf = get(g:, a:prifix . '_getVar_conf')
-  if empty(l:conf)
-    return 0
-  endif
-
-  return get(l:conf, a:name, 0)
-endfunction
+" 在 source 載入期間取得當前文件所在的目錄的方法
+" let s:_dirvi = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 
 
 " 載入文件
@@ -40,11 +24,30 @@ function! canUtils#ImportVim(pluginPath, ...)
 endfunction
 
 " 載入 python 文件
+"   載入後調用 python 函式的方法:
+"   ```py
+"   def fn():
+"       return 'hi'
+"   ```
+"   ```vim
+"   let rtn = py3eval('fn()')
+"   echo rtn
+"   ```
 function! canUtils#ImportPython(pyLibPath, ...)
   let l:expr = get(a:, 1, '*.py')
   call canUtils#ImportFile(a:pyLibPath, l:expr, 'py3file ')
 endfunction
 
+
+" 以反斜線編碼文字中的引號
+function! canUtils#SafeQuote(txt)
+  let l:symbolList = ['\', '"', '`']
+  let l:expr = a:txt
+  for l:pat in l:symbolList
+    let l:expr = substitute(l:expr, l:pat, '\\\' . l:pat, 'g')
+  endfor
+  return l:expr
+endfunction
 
 " 可共用的取得命令行命令文字
 function! s:getCmdTxt(cmdList)
@@ -80,16 +83,5 @@ function! canUtils#ShMiddle(...)
   let l:info = {'errCode': v:shell_error, 'result': l:result}
   let l:info.lineList = split(l:result, '\n')
   return l:info
-endfunction
-
-
-" 以反斜線編碼文字中的引號
-function! canUtils#SafeQuote(txt)
-  let l:symbolList = ['\', '"']
-  let l:expr = a:txt
-  for l:pat in l:symbolList
-    let l:expr = substitute(l:expr, l:pat, '\\\' . l:pat, 'g')
-  endfor
-  return l:expr
 endfunction
 
