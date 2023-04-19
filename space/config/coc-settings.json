@@ -6,5 +6,6 @@
 
   "colors.enable": true,
 
+  "flutter.enabled": true,
   "flutter.lsp.initialization.closingLabels": true
 }
