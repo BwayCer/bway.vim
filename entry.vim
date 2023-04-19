@@ -135,11 +135,8 @@
     echo '        @?   : 註解選取行      @/   : 反註解選取行'
     echo ' '
     echo '    會話紀錄：'
-    echo '        @rss,  @rsr,  @rsd  : 保存、恢復、刪除主要會話'
-    echo '        @rssc, @rsrc, @rsdc : 保存、恢復、刪除名為 Cupcake 的會話'
-    echo '        @rssd, @rsrd, @rsdd : 保存、恢復、刪除名為 Donut 的會話'
-    echo '        @rsse, @rsre, @rsde : 保存、恢復、刪除名為 Eclair 的會話'
-    echo '        @rssf, @rsrf, @rsdf : 保存、恢復、刪除名為 Froyo 的會話'
+    echo '        @rsp  : 問答式選擇保存、恢復、刪除會話'
+    echo '        @rsp<c|d|e|f> : Cupcake, Donut, Eclair, Froyo 的問答式會話操作'
 
     echo ' '
     echo '程式包管理：'
