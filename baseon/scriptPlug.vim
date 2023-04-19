@@ -52,8 +52,8 @@
   endfor
 
   " 註解/反註解選取行
-  noremap <CR>/ :call bway#utils#Comment(0)<CR>
-  noremap <CR>? :call bway#utils#Comment(1)<CR>
+  map <CR>/ :call bway#utils#Comment(0)<CR>
+  map <CR>? :call bway#utils#Comment(1)<CR>
 
 
   " 設定樣式

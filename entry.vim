@@ -113,6 +113,12 @@
     echo '基礎：'
     echo '    @H : 幫助       @rvc : 更新 .vimrc'
     echo '    @s : 儲存文件   @q : 退出文件'
+    echo ' '
+    echo '    @dir : 對當前文件目錄操作'
+    echo '        快捷鍵見 <F1> or :h netrw-browse-maps'
+    echo '        - -/d/%/R/D  回上層/新目錄/新文件/更名/刪除'
+    echo '        - p/v/<cr> 預覽/在左側分割視窗開啟/當前視窗開啟'
+    echo '        - u/U     切換到較早/較晚訪問的目錄'
 
     echo ' '
     echo '主程式包： (BwayCer/bway.vim)'
@@ -235,14 +241,11 @@
 
     echo ' '
     echo '額外功能：'
-    echo '    @dir : 對當前文件目錄操作'
-    echo ' '
     echo '    Kiang：'
     echo '        VimGameCodeBreak : 打程式碼方塊'
 
     echo ' '
   endfunction
 
-  command! BwayZCommandHelp :call ZCommandHelp()
-  nmap <CR>H :BwayZCommandHelp<CR>
+  nmap <CR>H :call ZCommandHelp()<CR>
 

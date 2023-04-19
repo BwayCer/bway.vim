@@ -23,6 +23,7 @@ Plug 'voldikss/vim-translator'
 
 " Vim 腳本的函式庫
 Plug 'vim-scripts/L9'
+  " export for 'vim-scripts/FuzzyFinder'
 
 " 查找文件 ； 依賴： L9
 Plug 'vim-scripts/FuzzyFinder'
