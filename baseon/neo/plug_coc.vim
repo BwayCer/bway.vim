@@ -19,6 +19,36 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " "suggest.noselect": true,
 
 
+  " >> 設定 statusLine 狀態欄 -------
+
+    " https://www.reddit.com/r/neovim/comments/pfe5ye
+    function! StatusLine_CodeDiagnostic(fileName)
+      let info = get(b:, 'coc_diagnostic_info', {})
+      if empty(info) | return '' | endif
+
+      let msgs = []
+      if get(info, 'error', 0)
+        hi User5 cterm=None ctermfg=202 ctermbg=237
+        call add(msgs, '❌' . info['error'])
+      else
+        hi User5 cterm=None ctermfg=228 ctermbg=237
+      endif
+
+      if get(info, 'warning', 0)
+        call add(msgs, '🚨' . info['warning'])
+      endif
+      if get(info, 'information', 0)
+        call add(msgs, '📌' . info['information'])
+      endif
+
+      if len(msgs) > 0
+        return '[' . join(msgs, '') . ']'
+      else
+        return ''
+      endif
+    endfunction
+
+
   " >>  -------
 
     " 執行語言服務器需有對應的命令 (ex: coc-flutter 需安裝 flutter)，否則會出現訊息:
