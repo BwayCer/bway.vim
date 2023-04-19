@@ -242,6 +242,13 @@
     " echo '    imap <C-x><C-s>  : 拼寫建議'
 
     echo ' '
+    echo '終端機：'
+    echo '    <C-\><C-\> : 光標由終端機上失焦'
+    echo '    @ter [緩存引索 (num)] [位置 (hHjJkKlL)] : 開啟終端機'
+    echo '    @term  0 [hHjJkKlL] : 開啟主要終端機'
+    echo '    @tern -1 [hHjJkKlL] : 開啟新終端機'
+
+    echo ' '
     echo '額外功能：'
     echo '    Kiang：'
     echo '        VimGameCodeBreak : 打程式碼方塊'
