@@ -34,8 +34,8 @@
 
 " >> 定位 .vimrc 文件 -------
 
-  let s:vimrc = fnamemodify(resolve(expand('$MYVIMRC')), ":p")
-  let g:vimDir = fnamemodify(s:vimrc, ":h")
+  let s:vimrc = fnamemodify(resolve(expand('$MYVIMRC')), ':p')
+  let g:vimDir = fnamemodify(s:vimrc, ':h')
 
     exec ":nmap <CR>rvc :echo 'source " . s:vimrc . "'"
           \ . " \\| :silent source " . s:vimrc . '<CR>'

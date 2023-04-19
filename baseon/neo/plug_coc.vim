@@ -22,8 +22,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
   " >>  -------
 
     " 執行語言服務器需有對應的命令 (ex: coc-flutter 需安裝 flutter)，否則會出現訊息:
-    "     Error on notification "doHover": hover provider not found for current
-    "     buffer, your language server don't support it.
+    "   Error on notification "doHover": hover provider not found for current
+    "   buffer, your language server don't support it.
     let g:coc_global_extensions = [
           \   'coc-flutter',
           \ ]
