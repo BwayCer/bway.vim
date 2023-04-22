@@ -32,8 +32,9 @@
   " ```
 
 
-" >> 定位 .vimrc 文件 -------
+" >> base set -------
 
+  " 定位 .vimrc 文件
   let s:vimrc = fnamemodify(resolve(expand('$MYVIMRC')), ':p')
   let g:vimDir = fnamemodify(s:vimrc, ':h')
 
@@ -43,6 +44,8 @@
 
   " 辨別編輯器
   let s:vimEditor = has('nvim') ? 'neo' : 'vim'
+
+  let mapleader = ','
 
 
 " >> base style -------
@@ -107,7 +110,8 @@
 
   function! ZCommandHelp()
     echo "常用命令提示\n=======\n\n"
-    echo '> @: 為 Enter 鍵 (<CR>)'
+    echo '> @       : 為 Enter 鍵 (<CR>)'
+    echo '> <Leader>: 為 "," 鍵'
 
     echo ' '
     echo '基礎：'
