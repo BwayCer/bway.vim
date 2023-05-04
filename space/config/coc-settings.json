@@ -1,0 +1,11 @@
+{
+  "suggest.noselect": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "dart"
+  ],
+
+  "colors.enable": true,
+
+  "flutter.enabled": true,
+  "flutter.lsp.initialization.closingLabels": true
+}
