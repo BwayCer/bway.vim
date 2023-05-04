@@ -13,14 +13,15 @@ function! statusLine#GetFileSize(fileName)
   endif
 
   if l:size < 1024
-    return l:size . 'b'
+    let readableSize = l:size . 'b'
   elseif l:size < 1024*1024
-    return printf('%.1f', l:size/1024.0) . 'K'
+    let readableSize = printf('%.1f', l:size/1024.0) . 'K'
   elseif l:size < 1024*1024*1024
-    return printf('%.1f', l:size/1024.0/1024.0) . 'M'
+    let readableSize = printf('%.1f', l:size/1024.0/1024.0) . 'M'
   else
-    return printf('%.1f', l:size/1024.0/1024.0/1024.0) . 'G'
+    let readableSize = printf('%.1f', l:size/1024.0/1024.0/1024.0) . 'G'
   endif
+  return ' ' . readableSize . ' '
 endfunction
 
 " 程式碼診斷 (搭配User5色塊)
@@ -29,11 +30,14 @@ function! StatusLine_CodeDiagnostic(fileName)
 endfunction
 
 
+" NOTE:
+"   當使用兩個相連的 `%{func()}` 時，若前者為可變長度
+"   且接著的回傳值首字帶空白格文字，其空白格會消失。
 " 設定樣式
 set statusline=%1*[B%{statusLine#GetBufFileTotal()}-%n]%m%*
-set statusline+=%9*%y%r%*
 set statusline+=%5*%{StatusLine_CodeDiagnostic(@%)}%*
-set statusline+=%8*\ %{statusLine#GetFileSize(@%)}\ %*
+set statusline+=%9*%y%r%*
+set statusline+=%8*%{statusLine#GetFileSize(@%)}%*
 set statusline+=%<%7*\ %{&ff};%{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\")}\ %*
 set statusline+=%1*\ %F\ %*
 set statusline+=%7*%=%*
