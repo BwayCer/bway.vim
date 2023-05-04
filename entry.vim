@@ -280,3 +280,8 @@
 
   nmap <CR>H :call ZCommandHelp()<CR>
 
+
+" >> 開發用 -------
+
+  exec 'source ' . g:vimDir . '/baseon/vimDevelop.vim'
+
