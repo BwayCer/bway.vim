@@ -5,7 +5,7 @@
   "   * ~/.vimrc         -> ~/.config/nvim/init.vim
   "   * ~/.vim/autoload/ -> ~/.local/share/nvim/site/autoload/
   "
-  " 本專案結構：┌┬┐└┴┘├┼┤─
+  " 本專案結構：┌┬┐╭╮└┴┘╰╯├┼─┤│
   "   * link:
   "     * ./entry.vim         -> ~/.vimrc
   "     * ./space/config/     -> ~/.config/nvim/
