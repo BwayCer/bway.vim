@@ -143,6 +143,9 @@
     echo '    會話紀錄：'
     echo '        @rsp  : 問答式選擇保存、恢復、刪除會話'
     echo '        @rs<c|d|e|f> : 對 Cupcake, Donut, Eclair, Froyo 會話名稱的問答式操作'
+    echo ' '
+    echo '    本微程式碼：'
+    echo '        @bcd : 程式碼診斷      @bcr : 運行程式碼'
 
     echo ' '
     echo '程式包管理：'

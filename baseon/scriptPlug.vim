@@ -44,3 +44,9 @@
     nmap <CR>rse :RecordSession Eclair<CR>
     nmap <CR>rsf :RecordSession Froyo<CR>
 
+
+" Plug singleFile/bwayCode
+
+  nmap <CR>bcd :call bwayCode#Diagnostic()<CR>
+  nmap <CR>bcr :call bwayCode#Run()<CR>
+
