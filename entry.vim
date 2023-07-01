@@ -40,6 +40,8 @@
 
     exec ":nmap <CR>rvc :echo 'source " . s:vimrc . "'"
           \ . " \\| :silent source " . s:vimrc . '<CR>'
+    exec ":nmap <CR>rvf :echo 'source ' . expand('%:p')"
+          \ . " \\| :silent exec 'source ' . expand('%:p')" . '<CR>'
 
 
   " 辨別編輯器
@@ -115,7 +117,7 @@
 
     echo ' '
     echo '基礎：'
-    echo '    @H : 幫助       @rvc : 更新 .vimrc'
+    echo '    @H : 幫助       @rvc : 更新 .vimrc   @rvf : source 當前文件'
     echo '    @s : 儲存文件   @q : 退出文件'
     echo ' '
     echo '    @dir : 對當前文件目錄操作'
