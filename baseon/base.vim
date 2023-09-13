@@ -122,7 +122,7 @@
   " 分頁列表
   nmap <CR>wtl :tabs<CR>
   " 新增分頁
-  nmap <CR>wte :tabedit<CR>
+  nmap <CR>wte :tab split<CR>
   " 上一分頁
   nmap <CR>wtp :tabNext<CR>
   " 下一分頁
